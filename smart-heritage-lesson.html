@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Heritage | RoboGuide Academy</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(216,164,91,0.12), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(216,164,91,0.06), transparent 30%),
+        #100c09;
+    color: white;
+    min-height: 100vh;
+}
+
+/* NAVIGATION */
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #4d3824;
+    background: rgba(16,12,9,0.94);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #d8a45b;
+}
+
+.back {
+    color: #d8a45b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back:hover {
+    color: white;
+    transform: translateX(-4px);
+}
+
+/* PAGE */
+
+.lesson-page {
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 25px 100px;
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 55px 30px;
+    margin-bottom: 35px;
+    border: 1px solid #4d3824;
+    border-radius: 28px;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, rgba(216,164,91,0.08), rgba(24,17,12,0.95));
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 1px solid rgba(216,164,91,0.2);
+    border-radius: 50%;
+    top: -100px;
+    right: -80px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border: 1px solid rgba(216,164,91,0.12);
+    border-radius: 50%;
+    bottom: -80px;
+    left: -60px;
+}
+
+.label {
+    color: #d8a45b;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 76px);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 span {
+    color: #d8a45b;
+}
+
+.intro {
+    max-width: 720px;
+    margin: auto;
+    color: #bdb3aa;
+    font-size: 18px;
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+}
+
+/* STATUS */
+
+.status-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.status {
+    padding: 9px 16px;
+    border-radius: 30px;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    color: #cfc5bb;
+    font-size: 13px;
+}
+
+.status.online {
+    color: #6fcf97;
+    border-color: #365c48;
+}
+
+/* PROGRESS */
+
+.progress-box {
+    margin: 30px 0 35px;
+    padding: 20px;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    border-radius: 18px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #bdb3aa;
+    font-size: 14px;
+}
+
+.progress-top strong {
+    color: #d8a45b;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #2b2118;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #a97639, #d8a45b, #f0c47d);
+    border-radius: 20px;
+    animation: progressGlow 2s infinite alternate;
+}
+
+@keyframes progressGlow {
+    from {
+        box-shadow: 0 0 5px rgba(216,164,91,0.2);
+    }
+    to {
+        box-shadow: 0 0 18px rgba(216,164,91,0.6);
+    }
+}
+
+/* SECTION CARDS */
+
+.lesson-card {
+    position: relative;
+    background: linear-gradient(145deg, #211710, #18110c);
+    border: 1px solid #4d3824;
+    border-radius: 22px;
+    padding: 32px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    transition: 0.35s;
+}
+
+.lesson-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #d8a45b;
+    opacity: 0.7;
+}
+
+.lesson-card:hover {
+    transform: translateY(-4px);
+    border-color: #765634;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.lesson-card h2 {
+    color: #d8a45b;
+    margin-bottom: 18px;
+    font-size: 25px;
+}
+
+.lesson-card p {
+    color: #c2b8af;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* ICON HEADER */
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 15px;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    font-size: 24px;
+}
+
+/* FACT */
+
+.fact {
+    border-left: 4px solid #d8a45b;
+    padding: 17px 20px;
+    background: #18110c;
+    margin-top: 22px;
+    color: #ddd;
+    border-radius: 0 12px 12px 0;
+    line-height: 1.6;
+}
+
+/* TECHNOLOGY GRID */
+
+.technology-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.tech-card {
+    padding: 20px;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    border-color: #d8a45b;
+}
+
+.tech-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.tech-card h3 {
+    color: #d8a45b;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.tech-card p {
+    font-size: 14px;
+    margin: 0;
+    color: #aaa098;
+    line-height: 1.6;
+}
+
+/* ROBOGUIDE SYSTEM */
+
+.system-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.system-step {
+    position: relative;
+    padding: 22px 15px;
+    text-align: center;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.system-step:hover {
+    border-color: #d8a45b;
+    transform: scale(1.03);
+}
+
+.system-step .number {
+    width: 35px;
+    height: 35px;
+    margin: auto auto 10px;
+    border-radius: 50%;
+    background: #d8a45b;
+    color: #100c09;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.system-step h3 {
+    color: white;
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.system-step p {
+    font-size: 13px;
+    margin: 0;
+    color: #aaa098;
+}
+
+/* FUTURE */
+
+.future-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.future-card {
+    text-align: center;
+    padding: 25px 15px;
+    border-radius: 16px;
+    background: #18110c;
+    border: 1px solid #4d3824;
+}
+
+.future-card .emoji {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.future-card h3 {
+    color: #d8a45b;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.future-card p {
+    font-size: 13px;
+    margin: 0;
+}
+
+/* QUIZ */
+
+.quiz-card {
+    background:
+        radial-gradient(circle at top right, rgba(216,164,91,0.1), transparent 35%),
+        #211710;
+}
+
+.quiz-label {
+    display: inline-block;
+    color: #d8a45b;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border: 1px solid #4d3824;
+    border-radius: 20px;
+    padding: 7px 12px;
+    margin-bottom: 15px;
+}
+
+.question {
+    font-size: 19px;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 16px 18px;
+    margin: 10px 0;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    border-radius: 14px;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.option:hover:not(:disabled) {
+    border-color: #d8a45b;
+    transform: translateX(5px);
+    background: #211710;
+}
+
+.option.correct {
+    border-color: #6fcf97;
+    background: rgba(111,207,151,0.08);
+}
+
+.option.wrong {
+    border-color: #eb5757;
+    background: rgba(235,87,87,0.08);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+    color: #d8a45b;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+/* COMPLETE BUTTON */
+
+.complete-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #d8a45b;
+    color: #100c09;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.complete-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(216,164,91,0.25);
+}
+
+.complete-btn:active {
+    transform: scale(0.97);
+}
+
+/* FINAL MESSAGE */
+
+.final-message {
+    display: none;
+    text-align: center;
+    padding: 35px 25px;
+    margin-top: 25px;
+    background:
+        radial-gradient(circle at center, rgba(216,164,91,0.12), transparent 65%),
+        #18110c;
+    border: 1px solid #d8a45b;
+    border-radius: 22px;
+    animation: appear 0.6s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.final-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.final-message h2 {
+    color: #d8a45b;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.final-message p {
+    color: #c2b8af;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+/* NAV BUTTONS */
+
+.bottom-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.bottom-nav a {
+    text-decoration: none;
+    color: #d8a45b;
+    border: 1px solid #4d3824;
+    padding: 12px 18px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.bottom-nav a:hover {
+    color: white;
+    border-color: #d8a45b;
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #766b62;
+    font-size: 13px;
+    padding: 25px;
+    border-top: 1px solid #2d2117;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .lesson-page {
+        padding: 35px 15px 70px;
+    }
+
+    .hero {
+        padding: 40px 20px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .intro {
+        font-size: 16px;
+    }
+
+    .lesson-card {
+        padding: 25px 20px;
+    }
+
+    .technology-grid,
+    .future-grid,
+    .system-box {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-top {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        Robo<span>Guide</span>
+    </div>
+
+    <a href="learn.html" class="back">
+        ← Learning Hub
+    </a>
+
+</nav>
+
+
+<main class="lesson-page">
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="label">
+        ROBOGUIDE ACADEMY • FINAL LESSON
+    </div>
+
+    <h1>
+        Smart <span>Heritage</span>
+    </h1>
+
+    <p class="intro">
+        Discover how robotics, sensors and digital technology
+        can help people learn about heritage and protect
+        important cultural sites.
+    </p>
+
+    <div class="status-row">
+
+        <div class="status online">
+            ● SYSTEM ONLINE
+        </div>
+
+        <div class="status">
+            🤖 Robotics
+        </div>
+
+        <div class="status">
+            🏛️ Heritage
+        </div>
+
+        <div class="status">
+            🌍 Zimbabwe
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROGRESS -->
+
+<div class="progress-box">
+
+    <div class="progress-top">
+
+        <span>
+            Academy Progress
+        </span>
+
+        <strong>
+            Lesson 6 of 6 • 100%
+        </strong>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+<!-- WHAT IS SMART HERITAGE -->
+
+<section class="lesson-card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🤖
+        </div>
+
+        <h2>
+            What Is Smart Heritage?
+        </h2>
+
+    </div>
+
+    <p>
+        Smart heritage combines heritage conservation
+        with modern technology.
+    </p>
+
+    <p>
+        Instead of relying only on traditional methods,
+        technology can help monitor sites, educate visitors
+        and provide information in interactive ways.
+    </p>
+
+    <div class="fact">
+
+        💡 <strong>The big idea:</strong>
+        Technology does not replace heritage.
+        It helps people understand it, experience it
+        and protect it.
+
+    </div>
+
+</section>
+
+
+<!-- TECHNOLOGY -->
+
+<section class="lesson-card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            ⚙️
+        </div>
+
+        <h2>
+            Technology Used in Heritage
+        </h2>
+
+    </div>
+
+    <p>
+        Different technologies can be used to support
+        heritage conservation.
+    </p>
+
+
+    <div class="technology-grid">
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                📡
+            </div>
+
+            <h3>
+                Sensors
+            </h3>
+
+            <p>
+                Detect movement or activity around
+                protected areas.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                🖥️
+            </div>
+
+            <h3>
+                Interactive Displays
+            </h3>
+
+            <p>
+                Present educational information
+                in an engaging way.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                📱
+            </div>
+
+            <h3>
+                QR Codes
+            </h3>
+
+            <p>
+                Connect visitors to additional
+                digital information.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                🤖
+            </div>
+
+            <h3>
+                Robotics
+            </h3>
+
+            <p>
+                Demonstrate technology while helping
+                monitor heritage environments.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                🌐
+            </div>
+
+            <h3>
+                Websites
+            </h3>
+
+            <p>
+                Allow people to continue learning
+                beyond the physical site.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                📷
+            </div>
+
+            <h3>
+                Digital Documentation
+            </h3>
+
+            <p>
+                Record and preserve information
+                about heritage sites.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ROBOGUIDE -->
+
+<section class="lesson-card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🪨
+        </div>
+
+        <h2>
+            How Does RoboGuide Help?
+        </h2>
+
+    </div>
+
+    <p>
+        RoboGuide is designed around the idea of using
+        technology to encourage responsible interaction
+        with heritage.
+    </p>
+
+    <p>
+        The system can use sensors to detect activity near
+        protected rock surfaces and provide educational
+        information to visitors.
+    </p>
+
+    <p>
+        The RoboGuide website also provides an interactive
+        Learning Hub where visitors can learn about
+        Zimbabwean heritage.
+    </p>
+
+
+    <div class="system-box">
+
+        <div class="system-step">
+
+            <div class="number">
+                1
+            </div>
+
+            <h3>
+                Detect
+            </h3>
+
+            <p>
+                Sensors monitor activity.
+            </p>
+
+        </div>
+
+
+        <div class="system-step">
+
+            <div class="number">
+                2
+            </div>
+
+            <h3>
+                Warn
+            </h3>
+
+            <p>
+                Visitors can receive a warning.
+            </p>
+
+        </div>
+
+
+        <div class="system-step">
+
+            <div class="number">
+                3
+            </div>
+
+            <h3>
+                Educate
+            </h3>
+
+            <p>
+                Cultural information is displayed.
+            </p>
+
+        </div>
+
+
+        <div class="system-step">
+
+            <div class="number">
+                4
+            </div>
+
+            <h3>
+                Record
+            </h3>
+
+            <p>
+                Incidents can provide useful data.
+            </p>
+
+        </div>
+
+
+        <div class="system-step">
+
+            <div class="number">
+                5
+            </div>
+
+            <h3>
+                Learn
+            </h3>
+
+            <p>
+                Visitors explore more information.
+            </p>
+
+        </div>
+
+
+        <div class="system-step">
+
+            <div class="number">
+                6
+            </div>
+
+            <h3>
+                Protect
+            </h3>
+
+            <p>
+                Technology supports conservation.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="fact">
+
+        🚀 <strong>RoboGuide combines education, robotics
+        and heritage protection</strong> into one smart
+        experience.
+
+    </div>
+
+</section>
+
+
+<!-- FUTURE -->
+
+<section class="lesson-card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🔮
+        </div>
+
+        <h2>
+            The Future of Heritage
+        </h2>
+
+    </div>
+
+    <p>
+        Future heritage systems could combine sensors,
+        artificial intelligence, digital maps and robotics
+        to help monitor and educate people at heritage sites.
+    </p>
+
+    <p>
+        These technologies can make learning more engaging
+        while helping communities understand the importance
+        of protecting cultural resources.
+    </p>
+
+
+    <div class="future-grid">
+
+        <div class="future-card">
+
+            <div class="emoji">
+                🧠
+            </div>
+
+            <h3>
+                Artificial Intelligence
+            </h3>
+
+            <p>
+                Smarter systems could answer questions
+                and guide visitors.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="emoji">
+                🗺️
+            </div>
+
+            <h3>
+                Digital Maps
+            </h3>
+
+            <p>
+                Visitors could explore heritage sites
+                through interactive maps.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="emoji">
+                🤖
+            </div>
+
+            <h3>
+                Smart Robots
+            </h3>
+
+            <p>
+                Robots could support monitoring,
+                education and conservation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL QUIZ -->
+
+<section class="lesson-card quiz-card">
+
+    <div class="quiz-label">
+        🧠 KNOWLEDGE CHECK
+    </div>
+
+    <h2>
+        Final Quiz
+    </h2>
+
+    <p class="question">
+        What is one way technology can help protect heritage?
+    </p>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, false)">
+
+        A. Encourage visitors to touch ancient surfaces
+
+    </button>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, true)">
+
+        B. Monitor sites and educate visitors
+
+    </button>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, false)">
+
+        C. Remove historical objects from sites
+
+    </button>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, false)">
+
+        D. Replace heritage sites with technology
+
+    </button>
+
+
+    <div id="result"></div>
+
+
+    <button
+        class="complete-btn"
+        onclick="completeLesson()">
+
+        🏆 COMPLETE FINAL LESSON
+
+    </button>
+
+
+    <div id="finalMessage" class="final-message">
+
+        <div class="final-icon">
+            👑
+        </div>
+
+        <h2>
+            RoboGuide Heritage Master!
+        </h2>
+
+        <p>
+            Congratulations! You have completed all
+            six RoboGuide Academy lessons.
+        </p>
+
+        <p>
+            You earned <strong>60 points</strong> and unlocked
+            the Heritage Master achievement.
+        </p>
+
+        <div class="bottom-nav">
+
+            <a href="learn.html">
+                📚 Learning Hub
+            </a>
+
+            <a href="explore.html">
+                🗿 Explore Heritage
+            </a>
+
+            <a href="rockai.html">
+                🤖 Ask RoboGuide
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    RoboGuide Academy • Learn • Explore • Respect • Protect 🇿🇼
+
+</footer>
+
+
+<script>
+
+let quizAnswered = false;
+
+
+/* QUIZ */
+
+function checkAnswer(button, correct) {
+
+    if (quizAnswered) {
+        return;
+    }
+
+    quizAnswered = true;
+
+    const options =
+        document.querySelectorAll(".option");
+
+    options.forEach(function(option) {
+
+        option.disabled = true;
+
+    });
+
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        document.getElementById("result").textContent =
+            "✅ Correct! Technology can monitor sites and educate visitors.";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        document.getElementById("result").textContent =
+            "❌ Not quite. Think about how technology can support protection.";
+
+    }
+
+}
+
+
+/* COMPLETE LESSON */
+
+function completeLesson() {
+
+    localStorage.setItem(
+        "smartHeritageCompleted",
+        "true"
+    );
+
+    document.getElementById("result").textContent =
+        "🏆 Final lesson completed! You earned 10 points.";
+
+    document.getElementById("finalMessage").style.display =
+        "block";
+
+    document.getElementById("finalMessage")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+}
+
+
+/* RESTORE COMPLETED STATE */
+
+window.addEventListener("DOMContentLoaded", function() {
+
+    if (
+        localStorage.getItem("smartHeritageCompleted")
+        === "true"
+    ) {
+
+        document.getElementById("finalMessage").style.display =
+            "block";
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Explore Great Zimbabwe | RoboGuide</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#100c09;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   BACKGROUND EFFECTS
+========================= */
+
+body::before{
+    content:"";
+
+    position:fixed;
+
+    width:450px;
+    height:450px;
+
+    border-radius:50%;
+
+    background:rgba(216,164,91,.045);
+
+    filter:blur(100px);
+
+    top:-180px;
+    left:-150px;
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+
+    position:fixed;
+
+    width:400px;
+    height:400px;
+
+    border-radius:50%;
+
+    background:rgba(111,207,151,.025);
+
+    filter:blur(110px);
+
+    bottom:-200px;
+    right:-150px;
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+
+    min-height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    background:rgba(16,12,9,.96);
+
+    border-bottom:1px solid rgba(216,164,91,.18);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+}
+
+.logo span{
+
+    color:#d8a45b;
+}
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:22px;
+}
+
+.back{
+
+    color:#d8a45b;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.back:hover{
+
+    color:white;
+}
+
+
+/* SYSTEM STATUS */
+
+.status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#817365;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+.status-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#6fcf97;
+
+    box-shadow:0 0 10px #6fcf97;
+
+    animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.4;
+        transform:scale(1.4);
+    }
+
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.page{
+
+    min-height:calc(100vh - 75px);
+
+    padding:75px 7% 90px;
+
+    text-align:center;
+
+    position:relative;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.label{
+
+    display:inline-block;
+
+    color:#d8a45b;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    margin-bottom:18px;
+
+    padding:8px 15px;
+
+    border:1px solid rgba(216,164,91,.25);
+
+    border-radius:30px;
+
+    background:rgba(216,164,91,.035);
+}
+
+h1{
+
+    font-size:clamp(45px,7vw,78px);
+
+    line-height:1;
+
+    margin-bottom:22px;
+
+    letter-spacing:1px;
+}
+
+h1 span{
+
+    color:#d8a45b;
+}
+
+.intro{
+
+    max-width:760px;
+
+    margin:auto;
+
+    color:#bdb3aa;
+
+    line-height:1.8;
+
+    font-size:17px;
+}
+
+
+/* =========================
+   ROBOGUIDE SCAN PANEL
+========================= */
+
+.scan-panel{
+
+    max-width:850px;
+
+    margin:45px auto 0;
+
+    padding:18px 22px;
+
+    border:1px solid #4d3824;
+
+    border-radius:16px;
+
+    background:#18110c;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    text-align:left;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.scan-panel::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-20%;
+
+    width:20%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(216,164,91,.12),
+        transparent
+    );
+
+    animation:scan 3s linear infinite;
+}
+
+@keyframes scan{
+
+    from{
+        left:-20%;
+    }
+
+    to{
+        left:120%;
+    }
+
+}
+
+.scan-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.scan-icon{
+
+    width:45px;
+
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:1px solid #d8a45b;
+
+    border-radius:12px;
+
+    font-size:23px;
+
+    background:#211710;
+}
+
+.scan-title{
+
+    color:#d8a45b;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+    letter-spacing:1px;
+}
+
+.scan-subtitle{
+
+    color:#776b5e;
+
+    font-size:11px;
+
+    margin-top:5px;
+}
+
+.scan-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#6fcf97;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.explorer-header{
+
+    max-width:1100px;
+
+    margin:70px auto 25px;
+
+    display:flex;
+
+    align-items:end;
+
+    justify-content:space-between;
+
+    text-align:left;
+}
+
+.explorer-title h2{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+}
+
+.explorer-title p{
+
+    color:#776b5e;
+
+    font-size:13px;
+}
+
+.mission-count{
+
+    color:#d8a45b;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+}
+
+
+/* =========================
+   LOCATION CARDS
+========================= */
+
+.locations{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+}
+
+.location{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    min-height:350px;
+
+    padding:32px 25px;
+
+    background:#211710;
+
+    border:1px solid #4d3824;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.location::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:#d8a45b;
+
+    transform:scaleX(0);
+
+    transform-origin:left;
+
+    transition:.35s;
+}
+
+.location:hover{
+
+    transform:translateY(-9px);
+
+    border-color:#d8a45b;
+
+    background:#261b13;
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.4);
+}
+
+.location:hover::before{
+
+    transform:scaleX(1);
+}
+
+
+/* NUMBER */
+
+.card-number{
+
+    position:absolute;
+
+    top:15px;
+
+    left:17px;
+
+    color:#5c4936;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    font-weight:bold;
+}
+
+
+/* ICON */
+
+.icon{
+
+    width:82px;
+
+    height:82px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:22px;
+
+    background:#18110c;
+
+    border:1px solid #4d3824;
+
+    font-size:43px;
+
+    margin-bottom:22px;
+
+    transition:.35s;
+}
+
+.location:hover .icon{
+
+    border-color:#d8a45b;
+
+    transform:scale(1.06) rotate(-2deg);
+}
+
+
+/* CARD CONTENT */
+
+.location h2{
+
+    color:#d8a45b;
+
+    margin-bottom:13px;
+
+    font-size:23px;
+}
+
+.location p{
+
+    color:#aaa098;
+
+    line-height:1.7;
+
+    max-width:280px;
+
+    font-size:14px;
+}
+
+.explore-label{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin-top:23px;
+
+    color:#d8a45b;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.location:hover .explore-label{
+
+    gap:12px;
+}
+
+
+/* =========================
+   MISSION BAR
+========================= */
+
+.mission-bar{
+
+    max-width:1100px;
+
+    margin:30px auto 0;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:10px;
+}
+
+.mission{
+
+    padding:11px;
+
+    border-radius:10px;
+
+    background:#18110c;
+
+    border:1px solid #39291c;
+
+    color:#817365;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+.mission.active{
+
+    color:#d8a45b;
+
+    border-color:#4d3824;
+}
+
+
+/* =========================
+   HOW TO EXPLORE
+========================= */
+
+.how-section{
+
+    max-width:1100px;
+
+    margin:80px auto 0;
+
+    padding:40px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #211710,
+            #18110c
+        );
+
+    border:1px solid #4d3824;
+
+    border-radius:22px;
+
+    text-align:left;
+}
+
+.how-section h2{
+
+    color:#d8a45b;
+
+    font-size:27px;
+
+    margin-bottom:10px;
+}
+
+.how-intro{
+
+    color:#817365;
+
+    font-size:14px;
+
+    margin-bottom:30px;
+}
+
+.steps{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+}
+
+.step{
+
+    padding:20px;
+
+    background:#100c09;
+
+    border:1px solid #39291c;
+
+    border-radius:15px;
+
+    transition:.3s;
+}
+
+.step:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#d8a45b;
+}
+
+.step-number{
+
+    color:#d8a45b;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    margin-bottom:12px;
+}
+
+.step h3{
+
+    font-size:16px;
+
+    margin-bottom:8px;
+}
+
+.step p{
+
+    color:#81776e;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   PROTECTION PANEL
+========================= */
+
+.protection{
+
+    max-width:1100px;
+
+    margin:25px auto 0;
+
+    padding:25px 30px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(111,207,151,.18);
+
+    background:rgba(111,207,151,.025);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    text-align:left;
+}
+
+.protection-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.protection-icon{
+
+    font-size:30px;
+}
+
+.protection h3{
+
+    color:#6fcf97;
+
+    font-size:15px;
+
+    margin-bottom:5px;
+}
+
+.protection p{
+
+    color:#817365;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+.protection-status{
+
+    color:#6fcf97;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+    white-space:nowrap;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:28px 20px;
+
+    border-top:1px solid #4d3824;
+
+    background:#100c09;
+
+    color:#6f655c;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+}
+
+.footer span{
+
+    color:#d8a45b;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .locations{
+
+        grid-template-columns:1fr;
+
+        max-width:520px;
+    }
+
+    .mission-bar{
+
+        grid-template-columns:1fr;
+
+        max-width:520px;
+    }
+
+    .steps{
+
+        grid-template-columns:1fr;
+    }
+
+    .protection{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+}
+
+@media(max-width:650px){
+
+    nav{
+
+        padding:14px 5%;
+
+        gap:10px;
+    }
+
+    .logo{
+
+        font-size:22px;
+    }
+
+    .nav-right{
+
+        gap:10px;
+    }
+
+    .status{
+
+        display:none;
+    }
+
+    .back{
+
+        font-size:12px;
+    }
+
+    .page{
+
+        padding:55px 5% 70px;
+    }
+
+    .scan-panel{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .explorer-header{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:8px;
+    }
+
+    .how-section{
+
+        padding:30px 20px;
+    }
+
+    .protection{
+
+        padding:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Robo<span>Guide</span>
+    </div>
+
+
+    <div class="nav-right">
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+
+        <a href="index.html" class="back">
+            ← Home
+        </a>
+
+
+        <a href="rockai.html" class="back">
+            🤖 RoboGuide AI
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+
+    <!-- HERO -->
+
+    <div class="label">
+        🇿🇼 ROBOGUIDE HERITAGE EXPLORER
+    </div>
+
+
+    <h1>
+        Explore <span>Great Zimbabwe</span>
+    </h1>
+
+
+    <p class="intro">
+
+        Welcome to your digital exploration of Great Zimbabwe.
+
+        Discover its architecture, history and cultural
+        significance by selecting an area below.
+
+        RoboGuide will guide you through the site,
+        one discovery at a time.
+
+    </p>
+
+
+    <!-- SCAN PANEL -->
+
+    <div class="scan-panel">
+
+        <div class="scan-left">
+
+            <div class="scan-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <div class="scan-title">
+                    ROBOGUIDE EXPLORATION SYSTEM
+                </div>
+
+                <div class="scan-subtitle">
+                    Scanning heritage modules...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="scan-status">
+
+            <span class="status-dot"></span>
+
+            HERITAGE DATA READY
+
+        </div>
+
+    </div>
+
+
+    <!-- SECTION HEADER -->
+
+    <div class="explorer-header">
+
+        <div class="explorer-title">
+
+            <h2>
+                🗺️ Choose Your Discovery
+            </h2>
+
+            <p>
+                Select a location to begin exploring.
+            </p>
+
+        </div>
+
+
+        <div class="mission-count">
+            03 HERITAGE MODULES
+        </div>
+
+    </div>
+
+
+    <!-- LOCATION CARDS -->
+
+    <section class="locations">
+
+
+        <!-- GREAT ENCLOSURE -->
+
+        <a
+            href="great-enclosure.html"
+            class="location">
+
+            <div class="card-number">
+                MODULE 01
+            </div>
+
+
+            <div>
+
+                <div class="icon">
+                    🧱
+                </div>
+
+                <h2>
+                    Great Enclosure
+                </h2>
+
+                <p>
+
+                    Explore one of the most remarkable
+                    stone structures of Great Zimbabwe.
+
+                </p>
+
+            </div>
+
+
+            <span class="explore-label">
+                EXPLORE <span>→</span>
+            </span>
+
+        </a>
+
+
+        <!-- HILL COMPLEX -->
+
+        <a
+            href="hill-complex.html"
+            class="location">
+
+            <div class="card-number">
+                MODULE 02
+            </div>
+
+
+            <div>
+
+                <div class="icon">
+                    ⛰️
+                </div>
+
+                <h2>
+                    Hill Complex
+                </h2>
+
+                <p>
+
+                    Discover the elevated complex and
+                    learn about its role within the
+                    ancient city.
+
+                </p>
+
+            </div>
+
+
+            <span class="explore-label">
+                EXPLORE <span>→</span>
+            </span>
+
+        </a>
+
+
+        <!-- ZIMBABWE BIRDS -->
+
+        <a
+            href="zimbabwe-birds.html"
+            class="location">
+
+            <div class="card-number">
+                MODULE 03
+            </div>
+
+
+            <div>
+
+                <div class="icon">
+                    🐦
+                </div>
+
+                <h2>
+                    Zimbabwe Birds
+                </h2>
+
+                <p>
+
+                    Discover the famous Zimbabwe Birds
+                    and their importance to Zimbabwean
+                    heritage.
+
+                </p>
+
+            </div>
+
+
+            <span class="explore-label">
+                EXPLORE <span>→</span>
+            </span>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- MISSION BAR -->
+
+    <div class="mission-bar">
+
+        <div class="mission active">
+            🧱 ARCHITECTURE
+        </div>
+
+        <div class="mission active">
+            🌍 HERITAGE
+        </div>
+
+        <div class="mission active">
+            🛡️ PROTECTION
+        </div>
+
+    </div>
+
+
+    <!-- HOW TO EXPLORE -->
+
+    <section class="how-section">
+
+        <h2>
+            🧭 Your RoboGuide Mission
+        </h2>
+
+        <p class="how-intro">
+
+            Explore, learn and discover why protecting
+            Zimbabwe's heritage matters.
+
+        </p>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    STEP 01
+                </div>
+
+                <h3>
+                    🔎 Explore
+                </h3>
+
+                <p>
+                    Choose a heritage module and
+                    discover important places,
+                    structures and symbols.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    STEP 02
+                </div>
+
+                <h3>
+                    🧠 Learn
+                </h3>
+
+                <p>
+                    Read interactive information and
+                    test your knowledge as you explore.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    STEP 03
+                </div>
+
+                <h3>
+                    🛡️ Protect
+                </h3>
+
+                <p>
+                    Learn how responsible visitors and
+                    smart technology can help protect
+                    heritage.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- PROTECTION PANEL -->
+
+    <section class="protection">
+
+        <div class="protection-info">
+
+            <div class="protection-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <h3>
+                    HERITAGE PROTECTION ACTIVE
+                </h3>
+
+                <p>
+                    RoboGuide combines education,
+                    technology and responsible visitor
+                    behaviour to support heritage protection.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="protection-status">
+            ● SYSTEM READY
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <p>
+
+        <span>RoboGuide</span>
+
+        • Smart Heritage • Learn • Explore • Protect 🇿🇼
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

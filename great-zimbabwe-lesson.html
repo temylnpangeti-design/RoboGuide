@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Great Zimbabwe | Roboguide Academy</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #100c09;
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #4d3824;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #d8a45b;
+        }
+
+        .back {
+            color: #d8a45b;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        .lesson-page {
+            max-width: 900px;
+            margin: auto;
+            padding: 60px 25px;
+        }
+
+        .label {
+            color: #d8a45b;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(40px, 7vw, 70px);
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #d8a45b;
+        }
+
+        .intro {
+            color: #bdb3aa;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .lesson-card {
+            background: #211710;
+            border: 1px solid #4d3824;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .lesson-card h2 {
+            color: #d8a45b;
+            margin-bottom: 15px;
+        }
+
+        .lesson-card p {
+            color: #c2b8af;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .fact {
+            border-left: 4px solid #d8a45b;
+            padding: 15px 20px;
+            background: #18110c;
+            margin-top: 20px;
+            color: #ddd;
+        }
+
+        .quiz-question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #18110c;
+            border: 1px solid #4d3824;
+            border-radius: 12px;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .option:hover {
+            border-color: #d8a45b;
+        }
+
+        .option.correct {
+            border-color: #6fcf97;
+        }
+
+        .option.wrong {
+            border-color: #eb5757;
+        }
+
+        .complete-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #d8a45b;
+            color: #100c09;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .complete-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            color: #d8a45b;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        ROBO<span>GUIDE</span>
+    </div>
+
+    <a href="learn.html" class="back">
+        ← Learning Hub
+    </a>
+
+</nav>
+
+
+<main class="lesson-page">
+
+    <div class="label">
+        Roboguide ACADEMY
+    </div>
+
+    <h1>
+        Great <span>Zimbabwe</span>
+    </h1>
+
+    <p class="intro">
+        Discover one of Zimbabwe's most important heritage sites
+        and learn why its remarkable stone structures continue
+        to tell the story of the past.
+    </p>
+
+
+    <section class="lesson-card">
+
+        <h2>🏛️ What is Great Zimbabwe?</h2>
+
+        <p>
+            Great Zimbabwe is an ancient stone-built settlement
+            in southeastern Zimbabwe. It was an important centre
+            of political, economic and cultural activity in the
+            region.
+        </p>
+
+        <p>
+            The site is famous for its impressive dry-stone
+            architecture, including the Great Enclosure and
+            the Hill Complex.
+        </p>
+
+        <div class="fact">
+            💡 Great Zimbabwe is a UNESCO World Heritage Site.
+        </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>🧱 The Stone Structures</h2>
+
+        <p>
+            The builders constructed walls using carefully placed
+            granite blocks without using mortar.
+        </p>
+
+        <p>
+            The impressive structures demonstrate the engineering,
+            organisation and craftsmanship of the communities
+            that lived there.
+        </p>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>🌍 Why Does It Matter?</h2>
+
+        <p>
+            Great Zimbabwe provides important evidence about the
+            history and achievements of African societies.
+        </p>
+
+        <p>
+            Protecting heritage sites helps future generations
+            understand and appreciate the history connected to them.
+        </p>
+
+    </section>
+
+
+    <!-- QUIZ -->
+
+    <section class="lesson-card">
+
+        <h2>🧠 Quick Quiz</h2>
+
+        <p class="quiz-question">
+            What is Great Zimbabwe especially famous for?
+        </p>
+
+        <button class="option" onclick="checkAnswer(this, false)">
+            A. Modern skyscrapers
+        </button>
+
+        <button class="option" onclick="checkAnswer(this, true)">
+            B. Ancient dry-stone architecture
+        </button>
+
+        <button class="option" onclick="checkAnswer(this, false)">
+            C. Underground railway tunnels
+        </button>
+
+        <button class="option" onclick="checkAnswer(this, false)">
+            D. Modern shopping centres
+        </button>
+
+        <div id="result"></div>
+
+        <button
+            class="complete-btn"
+            onclick="completeLesson()">
+
+            COMPLETE LESSON ✓
+
+        </button>
+
+    </section>
+
+</main>
+
+
+<script>
+
+function checkAnswer(button, correct) {
+
+    const options =
+        document.querySelectorAll(".option");
+
+    options.forEach(function(option) {
+        option.disabled = true;
+    });
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        document.getElementById("result").textContent =
+            "✅ Correct! Great Zimbabwe is famous for its remarkable dry-stone architecture.";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        document.getElementById("result").textContent =
+            "❌ Not quite. Try reviewing the Stone Structures section.";
+
+    }
+
+}
+
+
+function completeLesson() {
+
+    localStorage.setItem(
+        "greatZimbabweCompleted",
+        "true"
+    );
+
+    document.getElementById("result").textContent =
+        "🏆 Lesson completed! You earned 10 points.";
+
+}
+
+</script>
+
+</body>
+
+</html>

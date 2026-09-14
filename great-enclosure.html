@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Great Enclosure | RoboGuide</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#100c09;
+    color:#f5ead8;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:rgba(216,164,91,0.05);
+    filter:blur(100px);
+    top:-150px;
+    left:-150px;
+    pointer-events:none;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(111,207,151,0.025);
+    filter:blur(100px);
+    bottom:-150px;
+    right:-150px;
+    pointer-events:none;
+    z-index:-1;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+    min-height:75px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    background:rgba(16,12,9,0.96);
+
+    border-bottom:1px solid rgba(216,164,91,0.18);
+
+    position:sticky;
+    top:0;
+
+    z-index:100;
+
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#d8a45b;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.back{
+    color:#d8a45b;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.back:hover{
+    color:white;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:#817365;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#6fcf97;
+
+    box-shadow:0 0 10px #6fcf97;
+
+    animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.4;
+        transform:scale(1.4);
+    }
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:570px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    background:
+        linear-gradient(
+            rgba(16,12,9,.48),
+            rgba(16,12,9,.94)
+        ),
+        url("images/great-enclosure.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    position:relative;
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+    left:0;
+
+    width:100%;
+    height:120px;
+
+    background:
+        linear-gradient(
+            transparent,
+            #100c09
+        );
+}
+
+.hero-content{
+    max-width:900px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.label{
+    color:#d8a45b;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    margin-bottom:20px;
+}
+
+.hero-badge{
+    display:inline-block;
+
+    padding:8px 17px;
+
+    border:1px solid rgba(216,164,91,.4);
+
+    border-radius:30px;
+
+    color:#d8a45b;
+
+    background:rgba(16,12,9,.55);
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:clamp(48px,8vw,85px);
+
+    line-height:1;
+
+    margin-bottom:22px;
+
+    letter-spacing:1px;
+}
+
+h1 span{
+    color:#d8a45b;
+}
+
+.hero-description{
+    max-width:720px;
+
+    margin:auto;
+
+    color:#e0d8d0;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+
+/* =========================
+   HERO STATS
+========================= */
+
+.hero-stats{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+}
+
+.hero-stat{
+
+    padding:10px 15px;
+
+    background:rgba(16,12,9,.7);
+
+    border:1px solid rgba(216,164,91,.25);
+
+    border-radius:10px;
+
+    color:#c9baa9;
+
+    font-size:12px;
+}
+
+.hero-stat strong{
+    color:#d8a45b;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+
+    max-width:1050px;
+
+    margin:auto;
+
+    padding:70px 25px 90px;
+}
+
+.section{
+    margin-bottom:65px;
+}
+
+.section h2{
+
+    color:#d8a45b;
+
+    font-size:32px;
+
+    margin-bottom:20px;
+}
+
+.section p{
+
+    color:#b7ada4;
+
+    font-size:17px;
+
+    line-height:1.9;
+}
+
+
+/* =========================
+   DISCOVERY SECTION
+========================= */
+
+.discoveries{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+    margin-top:30px;
+}
+
+.discovery{
+
+    width:100%;
+
+    font-family:inherit;
+
+    background:#211710;
+
+    border:1px solid #4d3824;
+
+    border-radius:18px;
+
+    padding:28px 20px;
+
+    text-align:center;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.discovery::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:2px;
+
+    background:#d8a45b;
+
+    transform:scaleX(0);
+
+    transform-origin:left;
+
+    transition:.35s;
+}
+
+.discovery:hover{
+
+    transform:translateY(-7px);
+
+    border-color:#d8a45b;
+
+    background:#261b13;
+}
+
+.discovery:hover::before{
+
+    transform:scaleX(1);
+}
+
+.discovery-icon{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+}
+
+.discovery h3{
+
+    color:#d8a45b;
+
+    margin-bottom:10px;
+
+    font-size:18px;
+}
+
+.discovery p{
+
+    color:#9f9387;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   INFORMATION PANEL
+========================= */
+
+.info-panel{
+
+    margin-top:25px;
+
+    padding:30px;
+
+    background:#18110c;
+
+    border:1px solid #d8a45b;
+
+    border-radius:18px;
+
+    text-align:left;
+
+    min-height:155px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    animation:fadeIn .4s ease;
+}
+
+.info-panel::before{
+
+    content:"ROBOGUIDE DISCOVERY";
+
+    position:absolute;
+
+    top:15px;
+    right:20px;
+
+    color:#4d3824;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+}
+
+.info-panel h3{
+
+    color:#d8a45b;
+
+    font-size:24px;
+
+    margin-bottom:12px;
+}
+
+.info-panel p{
+
+    color:#b7ada4;
+
+    line-height:1.8;
+
+    font-size:16px;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   HERITAGE IMPORTANCE
+========================= */
+
+.importance-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:30px;
+}
+
+.importance-card{
+
+    background:#211710;
+
+    border:1px solid #4d3824;
+
+    border-radius:15px;
+
+    padding:22px;
+
+    transition:.3s;
+}
+
+.importance-card:hover{
+
+    border-color:#d8a45b;
+
+    transform:translateY(-4px);
+}
+
+.importance-card-icon{
+
+    font-size:30px;
+
+    margin-bottom:12px;
+}
+
+.importance-card h3{
+
+    color:#e4d2bb;
+
+    margin-bottom:8px;
+
+    font-size:16px;
+}
+
+.importance-card p{
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin:0;
+}
+
+
+/* =========================
+   ROBOGUIDE BOX
+========================= */
+
+.robot-box{
+
+    padding:40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2a1c12,
+            #18110c
+        );
+
+    border:1px solid #d8a45b;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.robot-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border:1px solid rgba(216,164,91,.12);
+
+    border-radius:50%;
+
+    top:-90px;
+    right:-50px;
+}
+
+.robot-box::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    border:1px solid rgba(216,164,91,.08);
+
+    border-radius:50%;
+
+    bottom:-60px;
+    left:-30px;
+}
+
+.robot-icon{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+    animation:robotFloat 3s ease-in-out infinite;
+}
+
+@keyframes robotFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+}
+
+.robot-box h2{
+
+    color:#d8a45b;
+
+    margin-bottom:15px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.robot-box p{
+
+    color:#b7ada4;
+
+    line-height:1.8;
+
+    max-width:750px;
+
+    margin:auto;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* =========================
+   ROBOT ACTIONS
+========================= */
+
+.robot-actions{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+
+    max-width:750px;
+
+    margin:28px auto 0;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.robot-action{
+
+    padding:15px 10px;
+
+    border-radius:12px;
+
+    background:#18110c;
+
+    border:1px solid #4d3824;
+
+    color:#c9baa9;
+
+    font-size:12px;
+}
+
+.robot-action strong{
+
+    display:block;
+
+    color:#d8a45b;
+
+    margin-bottom:5px;
+
+    font-size:14px;
+}
+
+
+/* =========================
+   HERITAGE GUARDIAN CHALLENGE
+========================= */
+
+.challenge{
+
+    margin-top:75px;
+
+    padding:45px 30px;
+
+    background:#211710;
+
+    border:1px solid #4d3824;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.challenge::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(216,164,91,.08);
+
+    top:-110px;
+    left:-80px;
+}
+
+.challenge-label{
+
+    color:#d8a45b;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+}
+
+.challenge h2{
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+    position:relative;
+}
+
+.challenge-intro{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#b7ada4;
+
+    line-height:1.7;
+}
+
+.scenario{
+
+    max-width:700px;
+
+    margin:35px auto 0;
+
+    padding:30px;
+
+    background:#18110c;
+
+    border-radius:18px;
+
+    border:1px solid #39291c;
+}
+
+.scenario h3{
+
+    color:#d8a45b;
+
+    margin-bottom:25px;
+}
+
+.choices{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.choices button{
+
+    padding:16px;
+
+    border-radius:12px;
+
+    border:1px solid #4d3824;
+
+    background:#211710;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    text-align:left;
+
+    transition:.3s;
+}
+
+.choices button:hover{
+
+    border-color:#d8a45b;
+
+    transform:translateX(4px);
+
+    background:#261b13;
+}
+
+.choices button.correct{
+
+    border-color:#6fcf97;
+
+    background:rgba(111,207,151,.07);
+}
+
+.choices button.wrong{
+
+    border-color:#eb5757;
+
+    background:rgba(235,87,87,.05);
+}
+
+#challenge-result{
+
+    margin-top:25px;
+
+    min-height:25px;
+
+    font-weight:bold;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   ACTION BUTTON
+========================= */
+
+.action{
+
+    text-align:center;
+
+    margin-top:50px;
+}
+
+.button{
+
+    display:inline-block;
+
+    padding:15px 28px;
+
+    border:1px solid #d8a45b;
+
+    border-radius:30px;
+
+    color:#d8a45b;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.button:hover{
+
+    background:#d8a45b;
+
+    color:#100c09;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 8px 25px rgba(216,164,91,.15);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    border-top:1px solid rgba(216,164,91,.15);
+
+    padding:28px 20px;
+
+    text-align:center;
+
+    color:#776b5e;
+
+    font-size:13px;
+}
+
+footer span{
+
+    color:#d8a45b;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    nav{
+
+        padding:14px 5%;
+
+        gap:15px;
+    }
+
+    .status{
+        display:none;
+    }
+
+    .nav-links{
+        gap:10px;
+    }
+
+    .discoveries{
+
+        grid-template-columns:1fr;
+    }
+
+    .importance-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .robot-actions{
+
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+
+        min-height:500px;
+    }
+
+}
+
+@media(max-width:550px){
+
+    nav{
+
+        min-height:70px;
+    }
+
+    .logo{
+
+        font-size:22px;
+    }
+
+    .back{
+
+        font-size:12px;
+    }
+
+    .hero{
+
+        padding:65px 18px;
+    }
+
+    .hero-description{
+
+        font-size:15px;
+    }
+
+    .content{
+
+        padding:55px 18px 70px;
+    }
+
+    .section h2{
+
+        font-size:27px;
+    }
+
+    .section p{
+
+        font-size:15px;
+    }
+
+    .robot-box{
+
+        padding:28px 20px;
+    }
+
+    .challenge{
+
+        padding:35px 18px;
+    }
+
+    .challenge h2{
+
+        font-size:27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Robo<span>Guide</span>
+    </div>
+
+    <div class="nav-links">
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+        <a href="explore.html" class="back">
+            ← Back to Explore
+        </a>
+
+        <a href="rockai.html" class="back">
+            🤖 RoboGuide AI
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            GREAT ZIMBABWE • HERITAGE SITE
+        </div>
+
+        <div class="label">
+            ROBOGUIDE EXPLORATION MODULE
+        </div>
+
+        <h1>
+            The <span>Great Enclosure</span>
+        </h1>
+
+        <p class="hero-description">
+
+            Step inside one of the most remarkable
+            stone structures of Great Zimbabwe and
+            discover the story behind its walls.
+
+        </p>
+
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+                🧱 <strong>Stone</strong> Architecture
+            </div>
+
+            <div class="hero-stat">
+                🌍 <strong>Zimbabwe</strong> Heritage
+            </div>
+
+            <div class="hero-stat">
+                🤖 <strong>Smart</strong> Protection
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENT
+========================= -->
+
+<main class="content">
+
+
+<!-- INTRODUCTION -->
+
+<section class="section">
+
+    <h2>
+        🏛️ What is the Great Enclosure?
+    </h2>
+
+    <p>
+
+        The Great Enclosure is one of the most
+        recognisable structures within the Great
+        Zimbabwe archaeological site.
+
+        Its massive stone walls demonstrate the
+        impressive building skills and organisation
+        of the communities that lived at Great
+        Zimbabwe.
+
+    </p>
+
+</section>
+
+
+<!-- DISCOVERIES -->
+
+<section class="section">
+
+    <h2>
+        🔎 Discover the Enclosure
+    </h2>
+
+    <p>
+        Select a topic to activate the RoboGuide
+        information system.
+    </p>
+
+
+    <div class="discoveries">
+
+
+        <button
+            class="discovery"
+            onclick="showInfo('walls')">
+
+            <div class="discovery-icon">
+                🧱
+            </div>
+
+            <h3>
+                Stone Walls
+            </h3>
+
+            <p>
+                Discover the dry-stone construction
+                techniques used at Great Zimbabwe.
+            </p>
+
+        </button>
+
+
+        <button
+            class="discovery"
+            onclick="showInfo('architecture')">
+
+            <div class="discovery-icon">
+                🌀
+            </div>
+
+            <h3>
+                Architecture
+            </h3>
+
+            <p>
+                Explore the design and organisation
+                of the Great Enclosure.
+            </p>
+
+        </button>
+
+
+        <button
+            class="discovery"
+            onclick="showInfo('heritage')">
+
+            <div class="discovery-icon">
+                🌍
+            </div>
+
+            <h3>
+                Heritage
+            </h3>
+
+            <p>
+                Understand why Great Zimbabwe remains
+                important today.
+            </p>
+
+        </button>
+
+    </div>
+
+
+    <!-- INFORMATION PANEL -->
+
+    <div
+        id="info-panel"
+        class="info-panel">
+
+        <h3 id="info-title">
+            Select a discovery
+        </h3>
+
+        <p id="info-text">
+
+            Choose one of the topics above to learn more
+            about the Great Enclosure.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- WHY IT MATTERS -->
+
+<section class="section">
+
+    <h2>
+        🌍 Why Does It Matter?
+    </h2>
+
+    <p>
+
+        Great Zimbabwe provides valuable evidence
+        about the societies that developed in
+        southern Africa.
+
+        Protecting the site allows future generations
+        to study, experience and appreciate this
+        important part of Zimbabwe's heritage.
+
+    </p>
+
+
+    <div class="importance-grid">
+
+
+        <div class="importance-card">
+
+            <div class="importance-card-icon">
+                🏛️
+            </div>
+
+            <h3>
+                Cultural Heritage
+            </h3>
+
+            <p>
+                It represents an important part of
+                Zimbabwe's cultural and archaeological heritage.
+            </p>
+
+        </div>
+
+
+        <div class="importance-card">
+
+            <div class="importance-card-icon">
+                🧠
+            </div>
+
+            <h3>
+                Knowledge
+            </h3>
+
+            <p>
+                The site provides evidence that helps
+                us understand past societies.
+            </p>
+
+        </div>
+
+
+        <div class="importance-card">
+
+            <div class="importance-card-icon">
+                👨‍👩‍👧‍👦
+            </div>
+
+            <h3>
+                Future Generations
+            </h3>
+
+            <p>
+                Protecting heritage allows future
+                generations to learn from the past.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ROBOGUIDE -->
+
+<section class="section">
+
+    <div class="robot-box">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <h2>
+            RoboGuide's Role
+        </h2>
+
+        <p>
+
+            RoboGuide can act as a smart heritage
+            guide and guardian.
+
+            Visitors can receive information about
+            the site, while sensors can help monitor
+            sensitive areas and detect activity that
+            may require attention.
+
+        </p>
+
+
+        <div class="robot-actions">
+
+            <div class="robot-action">
+
+                <strong>
+                    📚 EDUCATE
+                </strong>
+
+                Gives visitors useful
+                heritage information.
+
+            </div>
+
+
+            <div class="robot-action">
+
+                <strong>
+                    📡 MONITOR
+                </strong>
+
+                Uses sensors to detect
+                activity near protected areas.
+
+            </div>
+
+
+            <div class="robot-action">
+
+                <strong>
+                    🛡️ PROTECT
+                </strong>
+
+                Encourages responsible
+                visitor behaviour.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HERITAGE GUARDIAN CHALLENGE -->
+
+<section class="challenge">
+
+    <div class="challenge-label">
+        🤖 ROBOGUIDE HERITAGE GUARDIAN
+    </div>
+
+    <h2>
+        Protect the Great Enclosure
+    </h2>
+
+    <p class="challenge-intro">
+
+        Imagine you are helping RoboGuide monitor
+        the Great Enclosure. A visitor has moved toward
+        a protected area.
+
+    </p>
+
+
+    <div class="scenario">
+
+        <h3>
+            🚨 What should RoboGuide do?
+        </h3>
+
+
+        <div class="choices">
+
+            <button
+                onclick="checkAnswer(this,'correct')">
+
+                🔊 Give the visitor a polite warning
+
+            </button>
+
+
+            <button
+                onclick="checkAnswer(this,'wrong')">
+
+                🚫 Ignore the situation
+
+            </button>
+
+
+            <button
+                onclick="checkAnswer(this,'wrong')">
+
+                📢 Shout at the visitor
+
+            </button>
+
+        </div>
+
+
+        <div id="challenge-result"></div>
+
+    </div>
+
+</section>
+
+
+<!-- NEXT ACTION -->
+
+<div class="action">
+
+    <a
+        href="explore.html"
+        class="button">
+
+        ← Continue Exploring Great Zimbabwe
+
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <span>RoboGuide</span>
+    • Smart Heritage • Learn • Explore • Protect 🇿🇼
+
+</footer>
+
+
+<script>
+
+/* =========================
+   DISCOVERY INFORMATION
+========================= */
+
+function showInfo(topic){
+
+    const title =
+        document.getElementById("info-title");
+
+    const text =
+        document.getElementById("info-text");
+
+
+    if(topic === "walls"){
+
+        title.textContent =
+            "🧱 The Stone Walls";
+
+        text.textContent =
+            "The Great Enclosure is famous for its impressive dry-stone walls. "
+            + "The stones were carefully arranged without using traditional mortar, "
+            + "demonstrating sophisticated construction knowledge.";
+
+    }
+
+
+    else if(topic === "architecture"){
+
+        title.textContent =
+            "🌀 The Architecture";
+
+        text.textContent =
+            "The layout of Great Zimbabwe reflects careful planning and skilled "
+            + "stone construction. The Great Enclosure forms one of the most "
+            + "recognisable parts of the archaeological site.";
+
+    }
+
+
+    else if(topic === "heritage"){
+
+        title.textContent =
+            "🌍 Why the Heritage Matters";
+
+        text.textContent =
+            "Great Zimbabwe is an important part of Zimbabwe's cultural and "
+            + "archaeological heritage. Learning about and protecting the site "
+            + "helps ensure that future generations can experience its history.";
+
+    }
+
+
+    const panel =
+        document.getElementById("info-panel");
+
+    panel.style.animation = "none";
+
+    void panel.offsetWidth;
+
+    panel.style.animation =
+        "fadeIn .4s ease";
+
+}
+
+
+/* =========================
+   HERITAGE GUARDIAN
+========================= */
+
+let challengeAnswered = false;
+
+function checkAnswer(button, answer){
+
+    if(challengeAnswered){
+        return;
+    }
+
+    challengeAnswered = true;
+
+
+    const buttons =
+        document.querySelectorAll(".choices button");
+
+    buttons.forEach(function(item){
+
+        item.disabled = true;
+
+    });
+
+
+    const result =
+        document.getElementById("challenge-result");
+
+
+    if(answer === "correct"){
+
+        button.classList.add("correct");
+
+        result.textContent =
+            "✅ Correct! RoboGuide should provide a respectful warning and help protect the heritage area.";
+
+        result.style.color =
+            "#6fcf97";
+
+    }
+
+    else{
+
+        button.classList.add("wrong");
+
+
+        buttons.forEach(function(item){
+
+            if(
+                item.textContent.includes(
+                    "polite warning"
+                )
+            ){
+
+                item.classList.add("correct");
+
+            }
+
+        });
+
+
+        result.textContent =
+            "❌ Not quite. RoboGuide should encourage responsible behaviour while treating visitors respectfully.";
+
+        result.style.color =
+            "#d8a45b";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

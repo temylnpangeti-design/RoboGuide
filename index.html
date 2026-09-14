@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RoboGuide | Smart Heritage</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#100c09;
+    color:#f5ead8;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND PARTICLES
+========================= */
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    filter:blur(100px);
+    pointer-events:none;
+    z-index:-1;
+}
+
+body::before{
+    background:rgba(216,164,91,0.07);
+    top:10%;
+    left:-100px;
+}
+
+body::after{
+    background:rgba(112,74,38,0.08);
+    bottom:5%;
+    right:-100px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(216,164,91,0.18);
+    background:rgba(16,12,9,0.96);
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    letter-spacing:1px;
+    color:#f5ead8;
+}
+
+.logo span{
+    color:#d8a45b;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:#f5ead8;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+    position:relative;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-7px;
+    width:0;
+    height:2px;
+    background:#d8a45b;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#d8a45b;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:calc(100vh - 75px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 20px 70px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:rgba(216,164,91,0.055);
+    border-radius:50%;
+    filter:blur(70px);
+    top:5%;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.hero-content{
+    max-width:1000px;
+    position:relative;
+    z-index:2;
+}
+
+/* =========================
+   ROBOT STATUS
+========================= */
+
+.system-status{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:8px 16px;
+    border:1px solid rgba(216,164,91,0.3);
+    border-radius:30px;
+    background:rgba(216,164,91,0.04);
+    color:#d8a45b;
+    font-size:12px;
+    letter-spacing:1.2px;
+    margin-bottom:22px;
+}
+
+.status-dot{
+    width:9px;
+    height:9px;
+    background:#77c46a;
+    border-radius:50%;
+    box-shadow:0 0 12px #77c46a;
+    animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1.5);
+        opacity:0.55;
+    }
+}
+
+/* =========================
+   TAG
+========================= */
+
+.tag{
+    display:inline-block;
+    padding:8px 18px;
+    border:1px solid rgba(216,164,91,0.45);
+    border-radius:30px;
+    color:#d8a45b;
+    font-size:13px;
+    letter-spacing:1px;
+    margin-bottom:25px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+h1{
+    font-size:clamp(55px,10vw,115px);
+    line-height:0.9;
+    letter-spacing:5px;
+    margin-bottom:25px;
+    color:#f5ead8;
+    text-shadow:0 0 35px rgba(216,164,91,0.08);
+}
+
+h1 span{
+    color:#d8a45b;
+}
+
+.hero h2{
+    font-size:25px;
+    font-weight:normal;
+    margin-bottom:18px;
+    color:#e8d6bd;
+}
+
+.hero p{
+    max-width:720px;
+    margin:0 auto 35px;
+    line-height:1.8;
+    color:#b9a895;
+    font-size:16px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.button{
+    display:inline-block;
+    padding:14px 23px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    font-size:14px;
+}
+
+.button.primary{
+    background:#d8a45b;
+    color:#100c09;
+    box-shadow:0 8px 25px rgba(216,164,91,0.12);
+}
+
+.button.primary:hover{
+    background:#efc27c;
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(216,164,91,0.2);
+}
+
+.button.secondary{
+    border:1px solid rgba(216,164,91,0.5);
+    color:#f5ead8;
+    background:rgba(216,164,91,0.04);
+}
+
+.button.secondary:hover{
+    background:rgba(216,164,91,0.12);
+    border-color:#d8a45b;
+    transform:translateY(-4px);
+}
+
+/* =========================
+   ROBOT SCAN VISUAL
+========================= */
+
+.robot-display{
+    max-width:850px;
+    margin:65px auto 0;
+    padding:22px;
+    border:1px solid rgba(216,164,91,0.2);
+    border-radius:18px;
+    background:rgba(255,255,255,0.025);
+    box-shadow:0 20px 60px rgba(0,0,0,0.25);
+}
+
+.scan-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+    color:#8f8171;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.scan-title{
+    color:#d8a45b;
+}
+
+.scan-area{
+    height:130px;
+    border:1px solid rgba(216,164,91,0.2);
+    border-radius:12px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(
+            rgba(216,164,91,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(216,164,91,0.025) 1px,
+            transparent 1px
+        );
+    background-size:25px 25px;
+}
+
+.scan-line{
+    position:absolute;
+    left:0;
+    right:0;
+    height:2px;
+    background:#d8a45b;
+    box-shadow:0 0 18px #d8a45b;
+    animation:scan 3s infinite ease-in-out;
+}
+
+@keyframes scan{
+    0%{
+        top:0;
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    50%{
+        top:100%;
+        opacity:1;
+    }
+
+    90%{
+        opacity:1;
+    }
+
+    100%{
+        top:0;
+        opacity:0;
+    }
+}
+
+.scan-icon{
+    font-size:48px;
+    opacity:0.85;
+    animation:floatRobot 3s ease-in-out infinite;
+}
+
+@keyframes floatRobot{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.scan-status{
+    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    color:#9d8e7c;
+    font-size:12px;
+}
+
+.scan-status span{
+    color:#d8a45b;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    max-width:1100px;
+    margin:0 auto;
+    padding:80px 25px;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-label{
+    color:#d8a45b;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.section-heading h2{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.section-heading p{
+    color:#9f9182;
+    max-width:650px;
+    margin:auto;
+    line-height:1.7;
+}
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.feature-card{
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(216,164,91,0.15);
+    border-radius:15px;
+    padding:30px 25px;
+    text-align:center;
+    transition:0.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.feature-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:#d8a45b;
+    transform:scaleX(0);
+    transition:0.35s;
+}
+
+.feature-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(216,164,91,0.45);
+    background:rgba(216,164,91,0.045);
+}
+
+.feature-card:hover::before{
+    transform:scaleX(1);
+}
+
+.feature-icon{
+    font-size:42px;
+    margin-bottom:16px;
+}
+
+.feature-card h3{
+    color:#d8a45b;
+    margin-bottom:10px;
+    font-size:19px;
+}
+
+.feature-card p{
+    color:#a99a8a;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* =========================
+   HERITAGE LOCATIONS
+========================= */
+
+.locations{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.location-card{
+    padding:25px;
+    border-radius:14px;
+    border:1px solid rgba(216,164,91,0.14);
+    background:#18110d;
+    transition:0.3s;
+}
+
+.location-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(216,164,91,0.4);
+}
+
+.location-number{
+    color:#6d5b49;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:15px;
+}
+
+.location-card h3{
+    color:#f1dfc7;
+    margin-bottom:9px;
+}
+
+.location-card p{
+    color:#988a7b;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* =========================
+   JOURNEY
+========================= */
+
+.journey{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.journey-step{
+    position:relative;
+    padding:28px;
+    border-radius:15px;
+    background:linear-gradient(
+        145deg,
+        rgba(216,164,91,0.07),
+        rgba(255,255,255,0.015)
+    );
+    border:1px solid rgba(216,164,91,0.15);
+}
+
+.step-number{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#d8a45b;
+    color:#100c09;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.journey-step h3{
+    margin-bottom:10px;
+    color:#d8a45b;
+}
+
+.journey-step p{
+    color:#9f9182;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* =========================
+   QUICK STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:25px;
+}
+
+.stat{
+    text-align:center;
+    padding:22px 10px;
+    border:1px solid rgba(216,164,91,0.12);
+    border-radius:12px;
+    background:rgba(255,255,255,0.02);
+}
+
+.stat strong{
+    display:block;
+    font-size:27px;
+    color:#d8a45b;
+    margin-bottom:5px;
+}
+
+.stat span{
+    color:#817466;
+    font-size:12px;
+}
+
+/* =========================
+   AI FLOATING BUTTON
+========================= */
+
+.rockai-float{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background:#d8a45b;
+    color:#100c09;
+    text-decoration:none;
+    padding:13px 18px;
+    border-radius:30px;
+    font-weight:bold;
+    box-shadow:0 8px 25px rgba(0,0,0,0.35);
+    transition:0.3s;
+    z-index:100;
+}
+
+.rockai-float:hover{
+    transform:translateY(-4px) scale(1.03);
+    background:#efc27c;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid rgba(216,164,91,0.15);
+    padding:30px 20px;
+    text-align:center;
+    color:#776b5e;
+    font-size:13px;
+}
+
+footer span{
+    color:#d8a45b;
+    font-weight:bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .features,
+    .locations,
+    .journey{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .nav-links{
+        gap:12px;
+    }
+
+    .nav-links a{
+        font-size:13px;
+    }
+}
+
+@media(max-width:550px){
+
+    nav{
+        padding:17px 5%;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding:65px 20px;
+    }
+
+    h1{
+        font-size:48px;
+        letter-spacing:2px;
+    }
+
+    .hero h2{
+        font-size:20px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .button{
+        width:100%;
+        max-width:300px;
+    }
+
+    .robot-display{
+        margin-top:45px;
+    }
+
+    .scan-area{
+        height:110px;
+    }
+
+    .section{
+        padding:60px 20px;
+    }
+
+    .section-heading h2{
+        font-size:28px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .rockai-float{
+        right:15px;
+        bottom:15px;
+        padding:11px 15px;
+        font-size:13px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Robo<span>Guide</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="learn.html">Learning Hub</a>
+        <a href="rockai.html">AI Guide</a>
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            ROBOGUIDE SYSTEM ONLINE
+        </div>
+
+        <div class="tag">
+            🇿🇼 ROBOT MEETS CULTURE
+        </div>
+
+        <h1>
+            ROBO<span>GUIDE</span>
+        </h1>
+
+        <h2>
+            Smart Heritage. Learn. Explore. Protect.
+        </h2>
+
+        <p>
+            A smart robotic heritage guide and guardian designed
+            to help visitors experience Zimbabwe's historical sites
+            while supporting education, responsible tourism and
+            heritage protection.
+        </p>
+
+        <div class="buttons">
+
+            <a href="explore.html" class="button primary">
+                🏛️ Explore Great Zimbabwe
+            </a>
+
+            <a href="learn.html" class="button secondary">
+                📚 Enter Learning Hub
+            </a>
+
+            <a href="rockai.html" class="button secondary">
+                🤖 Meet RoboGuide AI
+            </a>
+
+        </div>
+
+
+        <!-- ROBOT SCAN -->
+
+        <div class="robot-display">
+
+            <div class="scan-top">
+                <span class="scan-title">
+                    ROBOGUIDE HERITAGE MONITOR
+                </span>
+
+                <span>
+                    SYSTEM 01
+                </span>
+            </div>
+
+            <div class="scan-area">
+
+                <div class="scan-line"></div>
+
+                <div class="scan-icon">
+                    🤖
+                </div>
+
+            </div>
+
+            <div class="scan-status">
+
+                <div>
+                    Sensor:
+                    <span>ACTIVE</span>
+                </div>
+
+                <div>
+                    Heritage:
+                    <span>PROTECTED</span>
+                </div>
+
+                <div>
+                    AI:
+                    <span>READY</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            WHAT ROBOGUIDE DOES
+        </div>
+
+        <h2>
+            One Robot. Three Missions.
+        </h2>
+
+        <p>
+            RoboGuide connects technology with Zimbabwean heritage
+            through education, exploration and responsible protection.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🏛️
+            </div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <p>
+                Discover Great Zimbabwe, its stone architecture,
+                Zimbabwe Birds and the stories preserved within
+                this remarkable heritage site.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📚
+            </div>
+
+            <h3>
+                Learn
+            </h3>
+
+            <p>
+                Enter the RoboGuide Learning Hub and discover
+                Zimbabwean heritage through interactive lessons,
+                facts and challenges.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Protect
+            </h3>
+
+            <p>
+                Sensors can help detect activity near protected
+                areas while RoboGuide educates visitors about
+                responsible heritage behaviour.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HERITAGE LOCATIONS
+========================= -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            HERITAGE EXPLORER
+        </div>
+
+        <h2>
+            Zimbabwe's Stories Are Waiting
+        </h2>
+
+        <p>
+            RoboGuide can support learning across different
+            cultural and natural heritage environments.
+        </p>
+
+    </div>
+
+
+    <div class="locations">
+
+        <div class="location-card">
+
+            <div class="location-number">
+                LOCATION 01
+            </div>
+
+            <h3>
+                Great Zimbabwe
+            </h3>
+
+            <p>
+                Explore the monumental stone structures,
+                Great Enclosure, Hill Complex and Zimbabwe Birds.
+            </p>
+
+        </div>
+
+
+        <div class="location-card">
+
+            <div class="location-number">
+                LOCATION 02
+            </div>
+
+            <h3>
+                Matobo
+            </h3>
+
+            <p>
+                Learn about Zimbabwe's rock art, landscapes
+                and cultural heritage while encouraging
+                responsible visitor behaviour.
+            </p>
+
+        </div>
+
+
+        <div class="location-card">
+
+            <div class="location-number">
+                LOCATION 03
+            </div>
+
+            <h3>
+                Chinhoyi Caves
+            </h3>
+
+            <p>
+                Discover the natural and cultural significance
+                of the caves while learning why protected
+                environments must be respected.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ROBOGUIDE JOURNEY
+========================= -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            HOW IT WORKS
+        </div>
+
+        <h2>
+            From Curiosity to Conservation
+        </h2>
+
+        <p>
+            RoboGuide turns a visitor's journey into an
+            opportunity to learn and protect.
+        </p>
+
+    </div>
+
+
+    <div class="journey">
+
+        <div class="journey-step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Discover
+            </h3>
+
+            <p>
+                Visitors explore cultural information and
+                learn about the importance of the heritage site.
+            </p>
+
+        </div>
+
+
+        <div class="journey-step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Detect
+            </h3>
+
+            <p>
+                Sensors can detect activity near protected
+                areas and trigger an appropriate warning.
+            </p>
+
+        </div>
+
+
+        <div class="journey-step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Protect
+            </h3>
+
+            <p>
+                RoboGuide encourages responsible behaviour
+                while recording useful information that can
+                support heritage management.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECT STATS
+========================= -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            ROBOGUIDE DASHBOARD
+        </div>
+
+        <h2>
+            Smart Heritage At A Glance
+        </h2>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong>6</strong>
+            <span>Learning Lessons</span>
+        </div>
+
+        <div class="stat">
+            <strong>60</strong>
+            <span>Learning Points</span>
+        </div>
+
+        <div class="stat">
+            <strong>3</strong>
+            <span>Core Missions</span>
+        </div>
+
+        <div class="stat">
+            <strong>🇿🇼</strong>
+            <span>Zimbabwe Heritage</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     AI BUTTON
+========================= -->
+
+<a href="rockai.html" class="rockai-float">
+    🤖 Ask RoboGuide
+</a>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <span>RoboGuide</span>
+    • Smart Heritage • Learn • Explore • Protect 🇿🇼
+
+</footer>
+
+
+</body>
+</html>

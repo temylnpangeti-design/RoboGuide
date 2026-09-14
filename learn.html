@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Learning Hub | RoboGuide</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(216,164,91,0.12), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(216,164,91,0.06), transparent 30%),
+        #100c09;
+    color: white;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #4d3824;
+    background: rgba(16,12,9,0.94);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #d8a45b;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.back {
+    color: #d8a45b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back:hover {
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MAIN HERO
+========================= */
+
+.page {
+    min-height: calc(100vh - 75px);
+    padding: 65px 7% 80px;
+    text-align: center;
+}
+
+.hero {
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    padding: 55px 25px 45px;
+    border: 1px solid #4d3824;
+    border-radius: 28px;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(216,164,91,0.08),
+            rgba(24,17,12,0.96)
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.35);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(216,164,91,0.15);
+    border-radius: 50%;
+    top: -130px;
+    right: -80px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(216,164,91,0.1);
+    border-radius: 50%;
+    bottom: -100px;
+    left: -60px;
+}
+
+.label {
+    color: #d8a45b;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: clamp(45px, 7vw, 75px);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 span {
+    color: #d8a45b;
+}
+
+.intro {
+    max-width: 760px;
+    margin: auto;
+    color: #bdb3aa;
+    line-height: 1.8;
+    font-size: 17px;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================
+   SYSTEM STATUS
+========================= */
+
+.system-status {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.status {
+    padding: 9px 16px;
+    border-radius: 25px;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    color: #aaa098;
+    font-size: 13px;
+}
+
+.status.online {
+    color: #6fcf97;
+    border-color: #365c48;
+}
+
+
+/* =========================
+   QUICK STATS
+========================= */
+
+.stats {
+    max-width: 850px;
+    margin: 30px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat {
+    padding: 18px;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    border-radius: 16px;
+}
+
+.stat-number {
+    color: #d8a45b;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #8f857c;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-heading {
+    max-width: 1100px;
+    margin: 60px auto 25px;
+    text-align: left;
+}
+
+.section-heading h2 {
+    color: #d8a45b;
+    font-size: 27px;
+    margin-bottom: 7px;
+}
+
+.section-heading p {
+    color: #82786f;
+    font-size: 14px;
+}
+
+
+/* =========================
+   LESSONS
+========================= */
+
+.lessons {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.lesson {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211710,
+            #18110c
+        );
+
+    border: 1px solid #4d3824;
+    border-radius: 22px;
+
+    padding: 28px 25px;
+
+    min-height: 285px;
+
+    text-decoration: none;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    transition: 0.35s;
+}
+
+.lesson::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: #d8a45b;
+
+    opacity: 0.55;
+}
+
+.lesson::after {
+    content: "";
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border: 1px solid rgba(216,164,91,0.08);
+
+    border-radius: 50%;
+
+    right: -55px;
+    bottom: -55px;
+
+    transition: 0.4s;
+}
+
+.lesson:hover {
+    transform: translateY(-8px);
+
+    border-color: #d8a45b;
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.4);
+}
+
+.lesson:hover::after {
+    transform: scale(1.4);
+    border-color: rgba(216,164,91,0.18);
+}
+
+
+/* LESSON TOP */
+
+.lesson-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+
+    background: #18110c;
+
+    border: 1px solid #4d3824;
+
+    border-radius: 16px;
+
+    transition: 0.3s;
+}
+
+.lesson:hover .icon {
+    transform: rotate(-5deg) scale(1.08);
+    border-color: #d8a45b;
+}
+
+.lesson-number {
+    color: #675d54;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+
+/* LESSON CONTENT */
+
+.lesson h2 {
+    color: #d8a45b;
+
+    margin: 20px 0 12px;
+
+    font-size: 21px;
+}
+
+.lesson p {
+    color: #aaa098;
+
+    line-height: 1.65;
+
+    font-size: 14px;
+}
+
+
+/* LESSON STATUS */
+
+.lesson-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 20px;
+}
+
+.lesson-label {
+    color: #d8a45b;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    font-weight: bold;
+}
+
+.lesson-arrow {
+    color: #6d6258;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.lesson:hover .lesson-arrow {
+    color: #d8a45b;
+    transform: translateX(5px);
+}
+
+
+/* COMPLETED CARD */
+
+.lesson.completed {
+    border-color: #4d6b58;
+}
+
+.lesson.completed::before {
+    background: #6fcf97;
+}
+
+.lesson.completed .lesson-label {
+    color: #6fcf97;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-box {
+    max-width: 850px;
+
+    margin: 45px auto 0;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(216,164,91,0.09),
+            transparent 35%
+        ),
+        #18110c;
+
+    border: 1px solid #4d3824;
+
+    border-radius: 22px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.progress-title {
+    color: #d8a45b;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.progress-percent {
+    color: #aaa098;
+
+    font-size: 13px;
+}
+
+.progress-bar {
+    width: 100%;
+
+    height: 12px;
+
+    background: #2c2119;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a97639,
+            #d8a45b,
+            #f0c47d
+        );
+
+    border-radius: 20px;
+
+    transition: width 0.6s ease;
+
+    box-shadow:
+        0 0 15px rgba(216,164,91,0.3);
+}
+
+.progress-text {
+    margin-top: 13px;
+
+    color: #aaa098;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   BADGE
+========================= */
+
+#badge {
+    margin-top: 22px;
+
+    display: inline-block;
+
+    padding: 13px 23px;
+
+    border: 1px solid #4d3824;
+
+    border-radius: 25px;
+
+    color: #777;
+
+    font-size: 14px;
+
+    background: #100c09;
+
+    transition: 0.3s;
+}
+
+.badge-unlocked {
+    color: #d8a45b !important;
+    border-color: #d8a45b !important;
+    box-shadow:
+        0 0 20px rgba(216,164,91,0.1);
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+#resetProgress {
+    display: block;
+
+    margin: 18px auto 0;
+
+    padding: 10px 20px;
+
+    border: 1px solid #4d3824;
+
+    border-radius: 25px;
+
+    background: transparent;
+
+    color: #777;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#resetProgress:hover {
+    border-color: #d8a45b;
+    color: #d8a45b;
+}
+
+
+/* =========================
+   MOTIVATION PANEL
+========================= */
+
+.motivation {
+    max-width: 850px;
+
+    margin: 30px auto 0;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background: #211710;
+
+    border: 1px solid #4d3824;
+}
+
+.motivation-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.motivation h3 {
+    color: #d8a45b;
+    margin-bottom: 8px;
+}
+
+.motivation p {
+    color: #999087;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    text-align: center;
+
+    padding: 28px 20px;
+
+    border-top: 1px solid #4d3824;
+
+    background: #100c09;
+
+    color: #6f655c;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+.footer span {
+    color: #d8a45b;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    .lessons {
+        grid-template-columns: 1fr;
+        max-width: 550px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .back {
+        font-size: 13px;
+    }
+
+    .back:first-child {
+        display: none;
+    }
+
+    .page {
+        padding: 35px 15px 60px;
+    }
+
+    .hero {
+        padding: 45px 20px;
+    }
+
+    h1 {
+        font-size: 46px;
+    }
+
+    .intro {
+        font-size: 15px;
+    }
+
+    .progress-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Robo<span>Guide</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="rockai.html" class="back">
+            🤖 Ask RoboGuide
+        </a>
+
+        <a href="index.html" class="back">
+            ← Home
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="label">
+        ROBOGUIDE ACADEMY
+    </div>
+
+    <h1>
+        Learning <span>Hub</span>
+    </h1>
+
+    <p class="intro">
+
+        Build your knowledge of Zimbabwean heritage
+        through short interactive lessons.
+
+        Learn about the places, people, architecture
+        and traditions that make our heritage valuable.
+
+    </p>
+
+
+    <div class="system-status">
+
+        <div class="status online">
+            ● ACADEMY ONLINE
+        </div>
+
+        <div class="status">
+            📚 6 Lessons
+        </div>
+
+        <div class="status">
+            🏆 60 Points
+        </div>
+
+        <div class="status">
+            🇿🇼 Zimbabwe Heritage
+        </div>
+
+    </div>
+
+
+    <!-- QUICK STATS -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-number">
+                6
+            </div>
+
+            <div class="stat-label">
+                HERITAGE LESSONS
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                60
+            </div>
+
+            <div class="stat-label">
+                TOTAL POINTS
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                1
+            </div>
+
+            <div class="stat-label">
+                HERITAGE MASTER BADGE
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SECTION TITLE -->
+
+<div class="section-heading">
+
+    <h2>
+        🗿 Heritage Learning Missions
+    </h2>
+
+    <p>
+        Choose a lesson and start exploring Zimbabwe's heritage.
+    </p>
+
+</div>
+
+
+<!-- =========================
+     LESSONS
+========================= -->
+
+<section class="lessons">
+
+
+<!-- LESSON 1 -->
+
+<a href="great-zimbabwe-lesson.html"
+   class="lesson"
+   data-lesson="greatZimbabwe">
+
+    <div>
+
+        <div class="lesson-top">
+
+            <div class="icon">
+                🏛️
+            </div>
+
+            <div class="lesson-number">
+                LESSON 01
+            </div>
+
+        </div>
+
+        <h2>
+            Great Zimbabwe
+        </h2>
+
+        <p>
+            Learn about the history, architecture
+            and significance of Great Zimbabwe.
+        </p>
+
+    </div>
+
+    <div class="lesson-footer">
+
+        <span
+            class="lesson-label"
+            id="greatZimbabweStatus">
+
+            START LESSON →
+
+        </span>
+
+        <span class="lesson-arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+
+<!-- LESSON 2 -->
+
+<a href="stone-architecture-lesson.html"
+   class="lesson"
+   data-lesson="stoneArchitecture">
+
+    <div>
+
+        <div class="lesson-top">
+
+            <div class="icon">
+                🧱
+            </div>
+
+            <div class="lesson-number">
+                LESSON 02
+            </div>
+
+        </div>
+
+        <h2>
+            Stone Architecture
+        </h2>
+
+        <p>
+            Discover how ancient communities built
+            impressive dry-stone structures.
+        </p>
+
+    </div>
+
+    <div class="lesson-footer">
+
+        <span
+            class="lesson-label"
+            id="stoneArchitectureStatus">
+
+            START LESSON →
+
+        </span>
+
+        <span class="lesson-arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+
+<!-- LESSON 3 -->
+
+<a href="zimbabwe-birds-lesson.html"
+   class="lesson"
+   data-lesson="zimbabweBirds">
+
+    <div>
+
+        <div class="lesson-top">
+
+            <div class="icon">
+                🐦
+            </div>
+
+            <div class="lesson-number">
+                LESSON 03
+            </div>
+
+        </div>
+
+        <h2>
+            Zimbabwe Birds
+        </h2>
+
+        <p>
+            Discover the meaning and importance of
+            the famous Zimbabwe Birds.
+        </p>
+
+    </div>
+
+    <div class="lesson-footer">
+
+        <span
+            class="lesson-label"
+            id="zimbabweBirdsStatus">
+
+            START LESSON →
+
+        </span>
+
+        <span class="lesson-arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+
+<!-- LESSON 4 -->
+
+<a href="heritage-protection-lesson.html"
+   class="lesson"
+   data-lesson="heritageProtection">
+
+    <div>
+
+        <div class="lesson-top">
+
+            <div class="icon">
+                🛡️
+            </div>
+
+            <div class="lesson-number">
+                LESSON 04
+            </div>
+
+        </div>
+
+        <h2>
+            Heritage Protection
+        </h2>
+
+        <p>
+            Learn how visitors can help protect
+            important heritage sites.
+        </p>
+
+    </div>
+
+    <div class="lesson-footer">
+
+        <span
+            class="lesson-label"
+            id="heritageProtectionStatus">
+
+            START LESSON →
+
+        </span>
+
+        <span class="lesson-arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+
+<!-- LESSON 5 -->
+
+<a href="rock-art-lesson.html"
+   class="lesson"
+   data-lesson="rockArt">
+
+    <div>
+
+        <div class="lesson-top">
+
+            <div class="icon">
+                🎨
+            </div>
+
+            <div class="lesson-number">
+                LESSON 05
+            </div>
+
+        </div>
+
+        <h2>
+            Rock Art
+        </h2>
+
+        <p>
+            Explore Zimbabwe's rock art and learn
+            why it needs to be protected.
+        </p>
+
+    </div>
+
+    <div class="lesson-footer">
+
+        <span
+            class="lesson-label"
+            id="rockArtStatus">
+
+            START LESSON →
+
+        </span>
+
+        <span class="lesson-arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+
+<!-- LESSON 6 -->
+
+<a href="smart-heritage-lesson.html"
+   class="lesson"
+   data-lesson="smartHeritage">
+
+    <div>
+
+        <div class="lesson-top">
+
+            <div class="icon">
+                🤖
+            </div>
+
+            <div class="lesson-number">
+                LESSON 06
+            </div>
+
+        </div>
+
+        <h2>
+            Smart Heritage
+        </h2>
+
+        <p>
+            Learn how robotics and technology can
+            help protect heritage sites.
+        </p>
+
+    </div>
+
+    <div class="lesson-footer">
+
+        <span
+            class="lesson-label"
+            id="smartHeritageStatus">
+
+            START LESSON →
+
+        </span>
+
+        <span class="lesson-arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+
+</section>
+
+
+<!-- =========================
+     PROGRESS
+========================= -->
+
+<section class="progress-box">
+
+    <div class="progress-header">
+
+        <div class="progress-title">
+            YOUR LEARNING PROGRESS
+        </div>
+
+        <div
+            class="progress-percent"
+            id="progressPercent">
+
+            0%
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-bar">
+
+        <div
+            class="progress-fill"
+            id="progressFill">
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="progress-text"
+        id="progressText">
+
+        0 of 6 lessons completed • 0 points earned
+
+    </div>
+
+
+    <div id="badge">
+
+        🔒 Complete a lesson to unlock your first badge
+
+    </div>
+
+
+    <button
+        id="resetProgress"
+        onclick="resetProgress()">
+
+        🔄 Reset Progress
+
+    </button>
+
+</section>
+
+
+<!-- =========================
+     MOTIVATION
+========================= -->
+
+<section class="motivation">
+
+    <div class="motivation-icon">
+        🤖
+    </div>
+
+    <h3 id="motivationTitle">
+        RoboGuide Mission
+    </h3>
+
+    <p id="motivationText">
+        Every lesson you complete helps you understand
+        why Zimbabwe's heritage is worth learning about
+        and protecting.
+    </p>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <p>
+
+        <span>ROBOGUIDE</span>
+        • Smart Heritage • Learn • Explore • Protect 🇿🇼
+
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* =========================
+   LESSON LIST
+========================= */
+
+const lessons = [
+
+    "greatZimbabwe",
+    "stoneArchitecture",
+    "zimbabweBirds",
+    "heritageProtection",
+    "rockArt",
+    "smartHeritage"
+
+];
+
+
+/* =========================
+   UPDATE PROGRESS
+========================= */
+
+function updateProgress() {
+
+    let completedLessons = 0;
+
+
+    lessons.forEach(function(lesson) {
+
+        if (
+            localStorage.getItem(
+                lesson + "Completed"
+            ) === "true"
+        ) {
+
+            completedLessons++;
+
+        }
+
+    });
+
+
+    const percentage =
+        (completedLessons / lessons.length) * 100;
+
+
+    /* Progress bar */
+
+    document.getElementById(
+        "progressFill"
+    ).style.width = percentage + "%";
+
+
+    /* Percentage */
+
+    document.getElementById(
+        "progressPercent"
+    ).textContent =
+        Math.round(percentage) + "%";
+
+
+    /* Progress text */
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+
+        completedLessons +
+        " of 6 lessons completed • " +
+        (completedLessons * 10) +
+        " points earned";
+
+
+    /* Lesson status */
+
+    lessons.forEach(function(lesson) {
+
+        const status =
+            document.getElementById(
+                lesson + "Status"
+            );
+
+        const card =
+            document.querySelector(
+                '[data-lesson="' + lesson + '"]'
+            );
+
+
+        if (
+            localStorage.getItem(
+                lesson + "Completed"
+            ) === "true"
+        ) {
+
+            if (status) {
+
+                status.textContent =
+                    "✓ COMPLETED";
+
+            }
+
+            if (card) {
+
+                card.classList.add(
+                    "completed"
+                );
+
+            }
+
+        } else {
+
+            if (status) {
+
+                status.textContent =
+                    "START LESSON →";
+
+            }
+
+            if (card) {
+
+                card.classList.remove(
+                    "completed"
+                );
+
+            }
+
+        }
+
+    });
+
+
+    /* Badge */
+
+    const badge =
+        document.getElementById("badge");
+
+
+    if (completedLessons === 0) {
+
+        badge.textContent =
+            "🔒 Complete a lesson to unlock your first badge";
+
+        badge.classList.remove(
+            "badge-unlocked"
+        );
+
+    }
+
+    else if (completedLessons < 3) {
+
+        badge.textContent =
+            "🏆 First Heritage Badge Unlocked";
+
+        badge.classList.add(
+            "badge-unlocked"
+        );
+
+    }
+
+    else if (completedLessons < 6) {
+
+        badge.textContent =
+            "🥇 Heritage Explorer Badge Unlocked";
+
+        badge.classList.add(
+            "badge-unlocked"
+        );
+
+    }
+
+    else {
+
+        badge.textContent =
+            "👑 RoboGuide Heritage Master!";
+
+        badge.classList.add(
+            "badge-unlocked"
+        );
+
+    }
+
+
+    /* Motivation */
+
+    const motivationTitle =
+        document.getElementById(
+            "motivationTitle"
+        );
+
+    const motivationText =
+        document.getElementById(
+            "motivationText"
+        );
+
+
+    if (completedLessons === 0) {
+
+        motivationTitle.textContent =
+            "🤖 RoboGuide Mission";
+
+        motivationText.textContent =
+            "Your heritage journey begins here. Choose a lesson and start exploring Zimbabwe's history.";
+
+    }
+
+    else if (completedLessons < 3) {
+
+        motivationTitle.textContent =
+            "🔥 Heritage Explorer Starting Up";
+
+        motivationText.textContent =
+            "Great start! Keep exploring to unlock the Heritage Explorer badge.";
+
+    }
+
+    else if (completedLessons < 6) {
+
+        motivationTitle.textContent =
+            "🧭 Heritage Explorer Mode";
+
+        motivationText.textContent =
+            "You're making serious progress. A few more lessons and the Heritage Master achievement is within reach.";
+
+    }
+
+    else {
+
+        motivationTitle.textContent =
+            "👑 Heritage Master Achieved!";
+
+        motivationText.textContent =
+            "All six RoboGuide Academy missions are complete. You now have the knowledge to explain why Zimbabwe's heritage should be respected and protected.";
+
+    }
+
+}
+
+
+/* =========================
+   RESET PROGRESS
+========================= */
+
+function resetProgress() {
+
+    const confirmReset = confirm(
+
+        "Are you sure you want to reset all RoboGuide Academy progress?"
+
+    );
+
+
+    if (!confirmReset) {
+
+        return;
+
+    }
+
+
+    lessons.forEach(function(lesson) {
+
+        localStorage.removeItem(
+            lesson + "Completed"
+        );
+
+    });
+
+
+    updateProgress();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    updateProgress
+);
+
+</script>
+
+
+</body>
+
+</html>

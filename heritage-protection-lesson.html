@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Heritage Protection | RoboGuide</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#100c09;
+    color:#f5ead8;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:rgba(216,164,91,0.055);
+    border-radius:50%;
+    filter:blur(100px);
+    top:5%;
+    left:-150px;
+    pointer-events:none;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:rgba(112,74,38,0.06);
+    border-radius:50%;
+    filter:blur(100px);
+    bottom:5%;
+    right:-150px;
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    border-bottom:1px solid rgba(216,164,91,0.18);
+    background:rgba(16,12,9,0.96);
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#d8a45b;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.system{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#827566;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.system-dot{
+    width:8px;
+    height:8px;
+    background:#6fcf97;
+    border-radius:50%;
+    box-shadow:0 0 10px #6fcf97;
+    animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.5;
+        transform:scale(1.4);
+    }
+
+}
+
+.back{
+    color:#d8a45b;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.back:hover{
+    color:white;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.lesson-page{
+    max-width:1000px;
+    margin:auto;
+    padding:55px 25px 80px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    text-align:center;
+    padding:20px 0 45px;
+}
+
+.label{
+    color:#d8a45b;
+    font-size:12px;
+    letter-spacing:3px;
+    margin-bottom:15px;
+}
+
+.lesson-number{
+    display:inline-block;
+    padding:7px 15px;
+    border:1px solid rgba(216,164,91,.35);
+    border-radius:30px;
+    color:#d8a45b;
+    font-size:12px;
+    margin-bottom:18px;
+    background:rgba(216,164,91,.04);
+}
+
+h1{
+    font-size:clamp(42px,7vw,72px);
+    line-height:1;
+    margin-bottom:20px;
+}
+
+h1 span{
+    color:#d8a45b;
+}
+
+.intro{
+    max-width:720px;
+    margin:auto;
+    color:#bdb3aa;
+    font-size:17px;
+    line-height:1.8;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-box{
+    max-width:650px;
+    margin:30px auto 0;
+    text-align:left;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    color:#8f8171;
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+.progress-info span:last-child{
+    color:#d8a45b;
+}
+
+.progress-bar{
+    width:100%;
+    height:7px;
+    background:#211710;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid #392a1d;
+}
+
+.progress-fill{
+    width:66.6%;
+    height:100%;
+    background:#d8a45b;
+    box-shadow:0 0 12px rgba(216,164,91,.4);
+}
+
+/* =========================
+   MONITOR
+========================= */
+
+.monitor{
+    margin:20px 0 35px;
+    padding:22px;
+    border:1px solid rgba(216,164,91,.18);
+    border-radius:18px;
+    background:rgba(255,255,255,.025);
+}
+
+.monitor-top{
+    display:flex;
+    justify-content:space-between;
+    color:#807264;
+    font-size:10px;
+    letter-spacing:1.5px;
+    margin-bottom:15px;
+}
+
+.monitor-title{
+    color:#d8a45b;
+}
+
+.monitor-screen{
+    min-height:115px;
+    border:1px solid rgba(216,164,91,.2);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(
+            rgba(216,164,91,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(216,164,91,.025) 1px,
+            transparent 1px
+        );
+    background-size:25px 25px;
+}
+
+.monitor-scan{
+    position:absolute;
+    width:100%;
+    height:2px;
+    background:#d8a45b;
+    box-shadow:0 0 15px #d8a45b;
+    animation:scan 3s infinite;
+}
+
+@keyframes scan{
+
+    0%{
+        top:0;
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    50%{
+        top:100%;
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        top:0;
+        opacity:0;
+    }
+
+}
+
+.monitor-content{
+    text-align:center;
+    z-index:2;
+}
+
+.monitor-icon{
+    font-size:36px;
+    margin-bottom:7px;
+}
+
+.monitor-content strong{
+    color:#d8a45b;
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.monitor-content p{
+    color:#85796d;
+    font-size:11px;
+    margin-top:5px;
+}
+
+.monitor-bottom{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:15px;
+    color:#827567;
+    font-size:11px;
+}
+
+.monitor-bottom span{
+    color:#6fcf97;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.lesson-card{
+    background:#211710;
+    border:1px solid #4d3824;
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:25px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.lesson-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:#d8a45b;
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:.35s;
+}
+
+.lesson-card:hover{
+    border-color:rgba(216,164,91,.4);
+    transform:translateY(-3px);
+}
+
+.lesson-card:hover::before{
+    transform:scaleX(1);
+}
+
+.lesson-card h2{
+    color:#d8a45b;
+    margin-bottom:15px;
+    font-size:23px;
+}
+
+.lesson-card p{
+    color:#c2b8af;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+/* =========================
+   FACT
+========================= */
+
+.fact{
+    border-left:4px solid #d8a45b;
+    padding:16px 20px;
+    background:#18110c;
+    margin-top:20px;
+    color:#ddd;
+    border-radius:0 10px 10px 0;
+    line-height:1.6;
+}
+
+/* =========================
+   THREAT GRID
+========================= */
+
+.threat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.threat{
+    padding:18px;
+    background:#18110c;
+    border:1px solid #392a1d;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.threat:hover{
+    border-color:#d8a45b;
+    transform:translateY(-3px);
+}
+
+.threat-icon{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.threat h3{
+    color:#e4d3bd;
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.threat p{
+    color:#918476;
+    font-size:12px;
+    line-height:1.5;
+    margin:0;
+}
+
+/* =========================
+   PROTECTION LIST
+========================= */
+
+.protection-list{
+    list-style:none;
+    margin-top:20px;
+    display:grid;
+    gap:10px;
+}
+
+.protection-list li{
+    color:#c2b8af;
+    line-height:1.6;
+    padding:13px 15px;
+    background:#18110c;
+    border:1px solid #392a1d;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.protection-list li:hover{
+    border-color:#d8a45b;
+    transform:translateX(4px);
+}
+
+.protection-list li::before{
+    content:"✓";
+    color:#6fcf97;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+/* =========================
+   ROBOGUIDE PANEL
+========================= */
+
+.roboguide-panel{
+    display:grid;
+    grid-template-columns:100px 1fr;
+    gap:20px;
+    align-items:center;
+    margin-top:22px;
+    padding:20px;
+    border-radius:15px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(216,164,91,.09),
+            rgba(216,164,91,.025)
+        );
+    border:1px solid rgba(216,164,91,.2);
+}
+
+.robot-circle{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#100c09;
+    border:1px solid #d8a45b;
+    font-size:35px;
+    box-shadow:0 0 25px rgba(216,164,91,.1);
+}
+
+.roboguide-panel h3{
+    color:#d8a45b;
+    margin-bottom:8px;
+}
+
+.roboguide-panel p{
+    margin:0;
+    font-size:14px;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-question{
+    color:#e8d6bd !important;
+    font-size:17px;
+    margin-bottom:20px !important;
+}
+
+.option{
+    display:block;
+    width:100%;
+    padding:16px;
+    margin:10px 0;
+    background:#18110c;
+    border:1px solid #4d3824;
+    border-radius:12px;
+    color:white;
+    text-align:left;
+    cursor:pointer;
+    transition:.3s;
+    font-size:14px;
+}
+
+.option:hover{
+    border-color:#d8a45b;
+    background:#211710;
+    transform:translateX(3px);
+}
+
+.option.correct{
+    border-color:#6fcf97;
+    background:rgba(111,207,151,.07);
+}
+
+.option.wrong{
+    border-color:#eb5757;
+    background:rgba(235,87,87,.07);
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+#result{
+    text-align:center;
+    margin-top:20px;
+    color:#d8a45b;
+    font-weight:bold;
+    line-height:1.6;
+    min-height:25px;
+}
+
+/* =========================
+   COMPLETE BUTTON
+========================= */
+
+.complete-btn{
+    display:block;
+    margin:30px auto 0;
+    padding:15px 30px;
+    border:none;
+    border-radius:30px;
+    background:#d8a45b;
+    color:#100c09;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.complete-btn:hover{
+    transform:translateY(-4px);
+    background:#efc27c;
+    box-shadow:0 8px 25px rgba(216,164,91,.2);
+}
+
+.complete-btn.completed{
+    background:#6fcf97;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid rgba(216,164,91,.15);
+    padding:28px 20px;
+    text-align:center;
+    color:#776b5e;
+    font-size:13px;
+}
+
+footer span{
+    color:#d8a45b;
+    font-weight:bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    nav{
+        padding:0 5%;
+    }
+
+    .system{
+        display:none;
+    }
+
+    .lesson-page{
+        padding:45px 18px 60px;
+    }
+
+    .lesson-card{
+        padding:23px;
+    }
+
+    .threat-grid{
+        grid-template-columns:1fr;
+    }
+
+    .roboguide-panel{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .robot-circle{
+        margin:auto;
+    }
+
+    .monitor-bottom{
+        gap:12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Robo<span>Guide</span>
+    </div>
+
+    <div class="nav-right">
+
+        <div class="system">
+            <span class="system-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+        <a href="learn.html" class="back">
+            ← Learning Hub
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="lesson-page">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="label">
+        ROBOGUIDE ACADEMY
+    </div>
+
+    <div class="lesson-number">
+        LESSON 04 OF 06 • +10 POINTS
+    </div>
+
+    <h1>
+        Heritage <span>Protection</span>
+    </h1>
+
+    <p class="intro">
+
+        Learn why Zimbabwe's heritage sites need protection
+        and how visitors, communities and technology can help
+        preserve them for future generations.
+
+    </p>
+
+
+    <div class="progress-box">
+
+        <div class="progress-info">
+
+            <span>
+                Academy Progress
+            </span>
+
+            <span>
+                4 / 6 lessons
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROTECTION MONITOR
+========================= -->
+
+<div class="monitor">
+
+    <div class="monitor-top">
+
+        <span class="monitor-title">
+            ROBOGUIDE PROTECTION MONITOR
+        </span>
+
+        <span>
+            HERITAGE ZONE 04
+        </span>
+
+    </div>
+
+
+    <div class="monitor-screen">
+
+        <div class="monitor-scan"></div>
+
+        <div class="monitor-content">
+
+            <div class="monitor-icon">
+                🛡️
+            </div>
+
+            <strong>
+                HERITAGE AREA MONITORED
+            </strong>
+
+            <p>
+                Responsible visitor behaviour encouraged
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="monitor-bottom">
+
+        <div>
+            SENSOR:
+            <span>ACTIVE</span>
+        </div>
+
+        <div>
+            SITE:
+            <span>SAFE</span>
+        </div>
+
+        <div>
+            ALERT:
+            <span>READY</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     WHAT IS HERITAGE
+========================= -->
+
+<section class="lesson-card">
+
+    <h2>
+        🏛️ What Is Heritage?
+    </h2>
+
+    <p>
+        Heritage includes places, objects, traditions,
+        knowledge and cultural practices that communities
+        value and pass from one generation to another.
+    </p>
+
+    <p>
+        Zimbabwe has many important heritage resources,
+        including archaeological sites, historic structures,
+        traditional knowledge and rock art.
+    </p>
+
+    <div class="fact">
+
+        💡 <strong>RoboGuide Fact:</strong>
+        Heritage connects people today with the history
+        and knowledge of previous generations.
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     THREATS
+========================= -->
+
+<section class="lesson-card">
+
+    <h2>
+        ⚠️ What Can Damage Heritage?
+    </h2>
+
+    <p>
+        Heritage sites can be damaged by human activities
+        as well as natural processes.
+    </p>
+
+
+    <div class="threat-grid">
+
+        <div class="threat">
+
+            <div class="threat-icon">
+                ✍️
+            </div>
+
+            <h3>
+                Writing & Drawing
+            </h3>
+
+            <p>
+                Marks can permanently damage historic surfaces.
+            </p>
+
+        </div>
+
+
+        <div class="threat">
+
+            <div class="threat-icon">
+                ✋
+            </div>
+
+            <h3>
+                Touching Fragile Surfaces
+            </h3>
+
+            <p>
+                Human contact can affect delicate heritage materials.
+            </p>
+
+        </div>
+
+
+        <div class="threat">
+
+            <div class="threat-icon">
+                🪨
+            </div>
+
+            <h3>
+                Removing Stones
+            </h3>
+
+            <p>
+                Taking stones or artefacts removes part of the site's story.
+            </p>
+
+        </div>
+
+
+        <div class="threat">
+
+            <div class="threat-icon">
+                🗑️
+            </div>
+
+            <h3>
+                Litter
+            </h3>
+
+            <p>
+                Waste can affect the appearance and environment of a site.
+            </p>
+
+        </div>
+
+
+        <div class="threat">
+
+            <div class="threat-icon">
+                🏗️
+            </div>
+
+            <h3>
+                Uncontrolled Development
+            </h3>
+
+            <p>
+                Poorly planned development can threaten heritage resources.
+            </p>
+
+        </div>
+
+
+        <div class="threat">
+
+            <div class="threat-icon">
+                🌧️
+            </div>
+
+            <h3>
+                Weathering & Erosion
+            </h3>
+
+            <p>
+                Natural processes can gradually change heritage materials.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     VISITOR RESPONSIBILITY
+========================= -->
+
+<section class="lesson-card">
+
+    <h2>
+        🛡️ How Can Visitors Help?
+    </h2>
+
+    <p>
+        Visitors play an important role in protecting heritage.
+        Small responsible actions can help keep important places
+        available for future generations.
+    </p>
+
+
+    <ul class="protection-list">
+
+        <li>
+            Follow site rules and instructions.
+        </li>
+
+        <li>
+            Stay in designated visitor areas.
+        </li>
+
+        <li>
+            Do not touch fragile rock art.
+        </li>
+
+        <li>
+            Never write or scratch on heritage structures.
+        </li>
+
+        <li>
+            Keep the site clean.
+        </li>
+
+        <li>
+            Report damage to responsible authorities.
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- =========================
+     TECHNOLOGY
+========================= -->
+
+<section class="lesson-card">
+
+    <h2>
+        🤖 How Can Technology Help?
+    </h2>
+
+    <p>
+        Technology can help heritage managers monitor,
+        document and educate people about important sites.
+    </p>
+
+    <p>
+        Sensors can detect movement, digital platforms can
+        teach visitors, and interactive systems can provide
+        information without requiring people to touch fragile
+        surfaces.
+    </p>
+
+
+    <div class="roboguide-panel">
+
+        <div class="robot-circle">
+            🤖
+        </div>
+
+        <div>
+
+            <h3>
+                RoboGuide Protection Mode
+            </h3>
+
+            <p>
+                RoboGuide can use sensors to detect activity
+                near protected areas, provide warnings and
+                educational information, and record useful
+                incident information for heritage managers.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="fact">
+
+        🚀 <strong>RoboGuide Mission:</strong>
+        Use technology not to replace heritage,
+        but to help people understand and protect it.
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<section class="lesson-card">
+
+    <h2>
+        🧠 Heritage Protection Challenge
+    </h2>
+
+    <p class="quiz-question">
+        Which action helps protect a heritage site?
+    </p>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, false)">
+
+        A. Writing on an ancient wall
+
+    </button>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, true)">
+
+        B. Following site rules
+
+    </button>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, false)">
+
+        C. Removing stones as souvenirs
+
+    </button>
+
+
+    <button
+        class="option"
+        onclick="checkAnswer(this, false)">
+
+        D. Touching fragile rock art
+
+    </button>
+
+
+    <div id="result"></div>
+
+
+    <button
+        class="complete-btn"
+        id="completeButton"
+        onclick="completeLesson()">
+
+        COMPLETE LESSON ✓
+
+    </button>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <span>RoboGuide</span>
+    • Smart Heritage • Learn • Explore • Protect 🇿🇼
+
+</footer>
+
+
+<script>
+
+/* =========================
+   QUIZ
+========================= */
+
+let quizAnswered = false;
+
+function checkAnswer(button, correct){
+
+    if(quizAnswered){
+        return;
+    }
+
+    quizAnswered = true;
+
+    const options =
+        document.querySelectorAll(".option");
+
+    options.forEach(function(option){
+
+        option.disabled = true;
+
+    });
+
+
+    if(correct){
+
+        button.classList.add("correct");
+
+        document.getElementById("result").textContent =
+            "✅ Correct! Following site rules helps protect heritage.";
+
+    }
+
+    else{
+
+        button.classList.add("wrong");
+
+        document.getElementById("result").textContent =
+            "❌ Not quite. Heritage protection starts with responsible behaviour.";
+
+        options.forEach(function(option){
+
+            if(
+                option.textContent.includes(
+                    "Following site rules"
+                )
+            ){
+
+                option.classList.add("correct");
+
+            }
+
+        });
+
+    }
+
+}
+
+
+/* =========================
+   COMPLETE LESSON
+========================= */
+
+function completeLesson(){
+
+    localStorage.setItem(
+        "heritageProtectionCompleted",
+        "true"
+    );
+
+    const button =
+        document.getElementById("completeButton");
+
+    button.textContent =
+        "🏆 LESSON COMPLETED";
+
+    button.classList.add("completed");
+
+    document.getElementById("result").textContent =
+        "🏆 Excellent! Heritage Protection completed. +10 points added to your RoboGuide Academy progress.";
+
+}
+
+
+/* =========================
+   RESTORE COMPLETION
+========================= */
+
+window.addEventListener("load", function(){
+
+    const completed =
+        localStorage.getItem(
+            "heritageProtectionCompleted"
+        );
+
+    if(completed === "true"){
+
+        const button =
+            document.getElementById("completeButton");
+
+        button.textContent =
+            "🏆 LESSON COMPLETED";
+
+        button.classList.add("completed");
+
+        document.getElementById("result").textContent =
+            "🏆 You have already completed this lesson. Your 10 points are saved.";
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

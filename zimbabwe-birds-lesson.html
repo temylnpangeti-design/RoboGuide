@@ -1,0 +1,1093 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zimbabwe Birds | RoboGuide Academy</title>
+
+<style>
+
+/* =========================================================
+   ROBOGUIDE ACADEMY
+   ZIMBABWE BIRDS LESSON
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(216,164,91,0.12), transparent 25%),
+        radial-gradient(circle at 90% 50%, rgba(112,75,35,0.12), transparent 30%),
+        #100c09;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    border-bottom: 1px solid #4d3824;
+    background: rgba(16,12,9,0.9);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #d8a45b;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.back {
+    color: #d8a45b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back:hover {
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 470px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "🐦";
+    position: absolute;
+    font-size: 260px;
+    opacity: 0.025;
+    right: -30px;
+    bottom: -50px;
+    transform: rotate(-8deg);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(216,164,91,0.07);
+    filter: blur(60px);
+    animation: glow 5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        transform: scale(0.85);
+        opacity: 0.4;
+    }
+
+    to {
+        transform: scale(1.15);
+        opacity: 0.9;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid #4d3824;
+    background: rgba(33,23,16,0.8);
+    padding: 9px 17px;
+    border-radius: 30px;
+    color: #d8a45b;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: #73d66b;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #73d66b;
+    animation: blink 1.4s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.label {
+    color: #d8a45b;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: clamp(48px, 9vw, 85px);
+    line-height: 0.95;
+    margin-bottom: 25px;
+}
+
+h1 span {
+    color: #d8a45b;
+}
+
+.intro {
+    color: #bdb3aa;
+    font-size: 19px;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: auto;
+}
+
+.start-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 27px;
+    background: #d8a45b;
+    color: #100c09;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.start-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(216,164,91,0.2);
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.lesson-page {
+    max-width: 1050px;
+    margin: auto;
+    padding: 25px 25px 80px;
+}
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-area {
+    background: #18110c;
+    border: 1px solid #4d3824;
+    border-radius: 18px;
+    padding: 18px 22px;
+    margin-bottom: 30px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    color: #a99e95;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.progress-top strong {
+    color: #d8a45b;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #302218;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 16.6%;
+    height: 100%;
+    background: #d8a45b;
+    border-radius: 20px;
+    box-shadow: 0 0 12px rgba(216,164,91,0.4);
+}
+
+/* =========================================================
+   LESSON CARDS
+========================================================= */
+
+.lesson-card {
+    background:
+        linear-gradient(145deg, rgba(37,26,17,0.98), rgba(24,16,11,0.98));
+    border: 1px solid #4d3824;
+    border-radius: 25px;
+    padding: 35px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.35s;
+}
+
+.lesson-card::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: -50px;
+    top: -50px;
+    background: rgba(216,164,91,0.06);
+    border-radius: 50%;
+}
+
+.lesson-card:hover {
+    transform: translateY(-5px);
+    border-color: #80603a;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.3);
+}
+
+.lesson-number {
+    display: inline-block;
+    color: #d8a45b;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.lesson-card h2 {
+    color: #d8a45b;
+    margin-bottom: 18px;
+    font-size: 26px;
+}
+
+.lesson-card p {
+    color: #c2b8af;
+    line-height: 1.85;
+    margin-bottom: 15px;
+}
+
+/* =========================================================
+   BIRD SPOTLIGHT
+========================================================= */
+
+.bird-section {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.bird-circle {
+    width: 165px;
+    height: 165px;
+    border-radius: 50%;
+    border: 2px solid #d8a45b;
+    background:
+        radial-gradient(circle, #513820, #1c130d 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    box-shadow:
+        0 0 35px rgba(216,164,91,0.15),
+        inset 0 0 30px rgba(216,164,91,0.1);
+    animation: birdFloat 4s ease-in-out infinite;
+}
+
+@keyframes birdFloat {
+    50% {
+        transform: translateY(-9px) rotate(2deg);
+    }
+}
+
+/* =========================================================
+   FACT BOX
+========================================================= */
+
+.fact {
+    border-left: 4px solid #d8a45b;
+    padding: 18px 22px;
+    background:
+        linear-gradient(90deg,
+        rgba(216,164,91,0.1),
+        rgba(216,164,91,0.02));
+    margin-top: 22px;
+    border-radius: 0 14px 14px 0;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   LEARNING CHECKPOINT
+========================================================= */
+
+.checkpoint {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px dashed #5a4328;
+    border-radius: 15px;
+    background: rgba(216,164,91,0.03);
+}
+
+.checkpoint-icon {
+    font-size: 28px;
+}
+
+.checkpoint-text strong {
+    color: #d8a45b;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkpoint-text span {
+    color: #9f958d;
+    font-size: 14px;
+}
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-card {
+    background:
+        linear-gradient(145deg, #2b1d12, #17100c);
+    border: 1px solid #76552f;
+}
+
+.quiz-badge {
+    display: inline-block;
+    padding: 7px 13px;
+    background: rgba(216,164,91,0.1);
+    color: #d8a45b;
+    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 17px;
+    margin: 11px 0;
+    background: #18110c;
+    border: 1px solid #4d3824;
+    border-radius: 14px;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.option:hover {
+    border-color: #d8a45b;
+    transform: translateX(5px);
+}
+
+.option.correct {
+    border-color: #6fcf97;
+    background: rgba(111,207,151,0.08);
+}
+
+.option.wrong {
+    border-color: #eb5757;
+    background: rgba(235,87,87,0.08);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+    color: #d8a45b;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   COMPLETE BUTTON
+========================================================= */
+
+.complete-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #d8a45b;
+    color: #100c09;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.complete-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(216,164,91,0.2);
+}
+
+/* =========================================================
+   ROBOGUIDE INSIGHT
+========================================================= */
+
+.robo-insight {
+    margin-top: 35px;
+    padding: 35px;
+    border-radius: 25px;
+    border: 1px solid #80603a;
+    background:
+        linear-gradient(135deg, #302114, #17100c);
+    position: relative;
+    overflow: hidden;
+}
+
+.robo-insight::after {
+    content: "ROBOGUIDE";
+    position: absolute;
+    right: -15px;
+    bottom: -20px;
+    font-size: 75px;
+    font-weight: bold;
+    color: rgba(216,164,91,0.035);
+}
+
+.robo-label {
+    color: #d8a45b;
+    letter-spacing: 3px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.robo-insight h2 {
+    margin-bottom: 15px;
+}
+
+.robo-insight p {
+    color: #c0b6ad;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+
+.page-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.nav-button {
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary {
+    background: #d8a45b;
+    color: #100c09;
+}
+
+.secondary {
+    border: 1px solid #d8a45b;
+    color: #d8a45b;
+}
+
+.nav-button:hover {
+    transform: translateY(-4px);
+}
+
+.secondary:hover {
+    background: #d8a45b;
+    color: #100c09;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid #3b2c1f;
+    text-align: center;
+    padding: 35px 20px;
+    color: #756b63;
+    font-size: 13px;
+}
+
+footer strong {
+    color: #d8a45b;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .back {
+        font-size: 12px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .hero {
+        min-height: 440px;
+    }
+
+    .lesson-card {
+        padding: 25px;
+    }
+
+    .bird-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .bird-circle {
+        margin: auto;
+    }
+
+    .checkpoint {
+        align-items: flex-start;
+    }
+
+    .page-buttons {
+        flex-direction: column;
+    }
+
+    .nav-button {
+        text-align: center;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+    <div class="logo">
+        Robo<span>Guide</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="learn.html" class="back">
+            ← Learning Hub
+        </a>
+
+        <a href="rockai.html" class="back">
+            🤖 Ask RoboGuide
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="status">
+            <span class="status-dot"></span>
+            ROBOGUIDE ACADEMY ONLINE
+        </div>
+
+        <div class="label">
+            LESSON 3 OF 6 • ZIMBABWE HERITAGE
+        </div>
+
+        <h1>
+            Zimbabwe <span>Birds</span>
+        </h1>
+
+        <p class="intro">
+            Discover the famous Zimbabwe Birds and learn
+            why they are an important part of Zimbabwe's
+            history, identity and cultural heritage.
+        </p>
+
+        <a href="#lesson" class="start-button">
+            🐦 Start Exploring
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="lesson-page" id="lesson">
+
+
+<!-- =====================================================
+     PROGRESS
+===================================================== -->
+
+<div class="progress-area">
+
+    <div class="progress-top">
+
+        <span>Academy Progress</span>
+
+        <strong>Lesson 3 / 6</strong>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SECTION 1
+===================================================== -->
+
+<section class="lesson-card">
+
+    <span class="lesson-number">
+        DISCOVERY 01
+    </span>
+
+    <div class="bird-section">
+
+        <div class="bird-circle">
+            🐦
+        </div>
+
+        <div>
+
+            <h2>🐦 What Are the Zimbabwe Birds?</h2>
+
+            <p>
+                The Zimbabwe Birds are soapstone sculptures
+                associated with Great Zimbabwe.
+            </p>
+
+            <p>
+                They are some of the most recognisable
+                symbols connected with Zimbabwean heritage.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="fact">
+
+        💡 <strong>National Symbol:</strong>
+        The Zimbabwe Bird is featured on Zimbabwe's
+        national flag.
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 2
+===================================================== -->
+
+<section class="lesson-card">
+
+    <span class="lesson-number">
+        DISCOVERY 02
+    </span>
+
+    <h2>🗿 Where Were They Found?</h2>
+
+    <p>
+        The bird sculptures were discovered at the
+        archaeological site of Great Zimbabwe.
+    </p>
+
+    <p>
+        Their discovery provides evidence of the artistic
+        skills and symbolic traditions of the people
+        associated with Great Zimbabwe.
+    </p>
+
+    <div class="checkpoint">
+
+        <div class="checkpoint-icon">
+            🔎
+        </div>
+
+        <div class="checkpoint-text">
+
+            <strong>Learning Checkpoint</strong>
+
+            <span>
+                Remember the connection:
+                Zimbabwe Birds → Great Zimbabwe.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 3
+===================================================== -->
+
+<section class="lesson-card">
+
+    <span class="lesson-number">
+        DISCOVERY 03
+    </span>
+
+    <h2>🎨 Why Are They Important?</h2>
+
+    <p>
+        The Zimbabwe Birds have become an important
+        national symbol.
+    </p>
+
+    <p>
+        They connect modern Zimbabwe with the country's
+        archaeological and cultural heritage.
+    </p>
+
+    <div class="fact">
+
+        🇿🇼 Heritage connects the past with the present.
+        The Zimbabwe Bird is one example of how an
+        ancient object can become part of modern identity.
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 4
+===================================================== -->
+
+<section class="lesson-card">
+
+    <span class="lesson-number">
+        DISCOVERY 04
+    </span>
+
+    <h2>🛡️ Protecting Heritage</h2>
+
+    <p>
+        Important cultural objects and archaeological
+        sites should be protected so that future
+        generations can learn from them.
+    </p>
+
+    <div class="fact">
+
+        🏛️ <strong>Remember:</strong>
+        Learning about heritage is one of the first
+        steps toward protecting it.
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ROBOGUIDE INSIGHT
+===================================================== -->
+
+<section class="robo-insight">
+
+    <div class="robo-label">
+        🤖 ROBOGUIDE INSIGHT
+    </div>
+
+    <h2>
+        How can technology help?
+    </h2>
+
+    <p>
+        RoboGuide combines heritage education with
+        technology to encourage visitors to understand,
+        respect and protect important cultural sites.
+        Interactive information can make heritage easier
+        to explore while encouraging responsible behaviour.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     QUIZ
+===================================================== -->
+
+<section class="lesson-card quiz-card">
+
+    <span class="lesson-number">
+        KNOWLEDGE CHECK
+    </span>
+
+    <div class="quiz-badge">
+        🧠 QUICK QUIZ
+    </div>
+
+    <h2>
+        Where were the Zimbabwe Bird sculptures discovered?
+    </h2>
+
+    <p>
+        Select the best answer.
+    </p>
+
+
+    <button class="option"
+        onclick="checkAnswer(this, false)">
+
+        A. Victoria Falls
+
+    </button>
+
+
+    <button class="option"
+        onclick="checkAnswer(this, true)">
+
+        B. Great Zimbabwe
+
+    </button>
+
+
+    <button class="option"
+        onclick="checkAnswer(this, false)">
+
+        C. Hwange National Park
+
+    </button>
+
+
+    <button class="option"
+        onclick="checkAnswer(this, false)">
+
+        D. Lake Kariba
+
+    </button>
+
+
+    <div id="result"></div>
+
+
+    <button class="complete-btn"
+        onclick="completeLesson()">
+
+        🏆 COMPLETE LESSON
+
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="page-buttons">
+
+    <a href="learn.html" class="nav-button primary">
+        ← Back to Learning Hub
+    </a>
+
+    <a href="rockai.html" class="nav-button secondary">
+        🤖 Ask RoboGuide
+    </a>
+
+    <a href="index.html" class="nav-button secondary">
+        🏠 RoboGuide Home
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <strong>RoboGuide Academy</strong>
+
+    <br><br>
+
+    Learn • Explore • Respect • Protect 🇿🇼
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function checkAnswer(button, correct) {
+
+    const options =
+        document.querySelectorAll(".option");
+
+    options.forEach(function(option) {
+
+        option.disabled = true;
+
+    });
+
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        document.getElementById("result").innerHTML =
+            "✅ Correct! The Zimbabwe Birds were discovered at Great Zimbabwe. 🐦";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        document.getElementById("result").innerHTML =
+            "❌ Not quite. Review the lesson and try to remember the Great Zimbabwe connection.";
+
+    }
+
+}
+
+
+function completeLesson() {
+
+    localStorage.setItem(
+        "zimbabweBirdsCompleted",
+        "true"
+    );
+
+    document.getElementById("result").innerHTML =
+        "🏆 Lesson completed! 10 points earned. Your RoboGuide Academy progress has been updated.";
+
+    const button =
+        document.querySelector(".complete-btn");
+
+    button.textContent =
+        "✓ LESSON COMPLETED";
+
+    button.style.background =
+        "#6fcf97";
+
+}
+
+
+/* Restore completed state when the page opens */
+
+window.addEventListener("DOMContentLoaded", function() {
+
+    if (
+        localStorage.getItem("zimbabweBirdsCompleted")
+        === "true"
+    ) {
+
+        const button =
+            document.querySelector(".complete-btn");
+
+        button.textContent =
+            "✓ LESSON COMPLETED";
+
+        button.style.background =
+            "#6fcf97";
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>
+```

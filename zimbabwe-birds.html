@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zimbabwe Birds | RoboGuide</title>
+
+<style>
+
+/* =========================================================
+   ROBOGUIDE • ZIMBABWE BIRDS
+   FULL OFFLINE HERITAGE EXPERIENCE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(216,164,91,0.12), transparent 25%),
+        radial-gradient(circle at 85% 40%, rgba(115,78,39,0.12), transparent 28%),
+        linear-gradient(135deg, #100c09, #17100c 45%, #0c0907);
+    color: #f5eee7;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND PARTICLES
+========================================================= */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #d8a45b;
+    border-radius: 50%;
+    opacity: 0.35;
+    animation: drift 8s infinite ease-in-out;
+}
+
+.particle:nth-child(1) {
+    left: 8%;
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    left: 22%;
+    top: 70%;
+    animation-delay: 2s;
+}
+
+.particle:nth-child(3) {
+    left: 42%;
+    top: 35%;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(4) {
+    left: 65%;
+    top: 75%;
+    animation-delay: 3s;
+}
+
+.particle:nth-child(5) {
+    left: 82%;
+    top: 25%;
+    animation-delay: 4s;
+}
+
+.particle:nth-child(6) {
+    left: 92%;
+    top: 65%;
+    animation-delay: 1.5s;
+}
+
+@keyframes drift {
+    0%,100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: translateY(-35px) scale(1.8);
+        opacity: 0.7;
+    }
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 76px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(13,9,7,0.92);
+    border-bottom: 1px solid rgba(216,164,91,0.2);
+
+    backdrop-filter: blur(14px);
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #d8a45b;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.back-link {
+    color: #d8a45b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #91857b;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #7ed66a;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #7ed66a;
+    animation: statusPulse 1.5s infinite;
+}
+
+@keyframes statusPulse {
+    50% {
+        opacity: 0.3;
+        transform: scale(0.75);
+    }
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+    min-height: 610px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 90px 25px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background: rgba(216,164,91,0.08);
+    filter: blur(70px);
+    animation: heroGlow 6s infinite alternate;
+}
+
+@keyframes heroGlow {
+    from {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1.25);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 950px;
+}
+
+.system-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 18px;
+    border: 1px solid #5c4328;
+    border-radius: 50px;
+    color: #d8a45b;
+    background: rgba(30,21,15,0.8);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.hero-label {
+    color: #d8a45b;
+    font-size: 12px;
+    letter-spacing: 5px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(52px, 10vw, 105px);
+    line-height: 0.92;
+    letter-spacing: -5px;
+    margin-bottom: 28px;
+}
+
+.hero h1 span {
+    color: #d8a45b;
+}
+
+.hero-description {
+    max-width: 760px;
+    margin: auto;
+    color: #bdb2a8;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.scroll-button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 12px 20px;
+    border: 1px solid #5c4328;
+    border-radius: 30px;
+    color: #bba993;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.scroll-button:hover {
+    border-color: #d8a45b;
+    color: #d8a45b;
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    padding: 25px 18px;
+    text-align: center;
+    border: 1px solid #493522;
+    border-radius: 20px;
+    background:
+        linear-gradient(145deg, rgba(42,29,19,0.95), rgba(20,14,10,0.95));
+    transition: 0.35s;
+}
+
+.stat-card:hover {
+    transform: translateY(-7px);
+    border-color: #d8a45b;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.stat-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    display: block;
+    color: #d8a45b;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    color: #8e8176;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SECTION CARDS
+========================================================= */
+
+.section {
+    margin-bottom: 28px;
+    padding: 38px;
+    border: 1px solid #493522;
+    border-radius: 26px;
+    background:
+        linear-gradient(145deg, rgba(38,26,17,0.96), rgba(20,14,10,0.96));
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    overflow: hidden;
+    position: relative;
+}
+
+.section::after {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(216,164,91,0.08);
+    box-shadow:
+        0 0 0 25px rgba(216,164,91,0.025),
+        0 0 0 50px rgba(216,164,91,0.02);
+}
+
+.section h2 {
+    color: #d8a45b;
+    font-size: 27px;
+    margin-bottom: 18px;
+}
+
+.section p {
+    color: #c3b8ae;
+    line-height: 1.85;
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   REAL BIRD DISPLAY
+========================================================= */
+
+.bird-grid {
+    display: grid;
+    grid-template-columns: 390px 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.photo-wrapper {
+    position: relative;
+}
+
+.photo-frame {
+    padding: 10px;
+    background: #090705;
+    border: 2px solid #d8a45b;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow:
+        0 0 35px rgba(216,164,91,0.1),
+        inset 0 0 20px rgba(216,164,91,0.05);
+    transition: 0.4s;
+}
+
+.photo-frame:hover {
+    transform: translateY(-8px) rotate(-0.5deg);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.5),
+        0 0 35px rgba(216,164,91,0.2);
+}
+
+.bird-image {
+    width: 100%;
+    height: 470px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 12px;
+}
+
+.artefact-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(13,9,7,0.9);
+    border: 1px solid #d8a45b;
+    border-radius: 20px;
+    padding: 8px 12px;
+    color: #d8a45b;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+}
+
+.photo-caption {
+    text-align: center;
+    padding: 15px 5px 5px;
+}
+
+.photo-caption strong {
+    display: block;
+    color: #d8a45b;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.photo-caption small {
+    color: #786d64;
+}
+
+.zoom-hint {
+    text-align: center;
+    margin-top: 10px;
+    color: #81756b;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   HERITAGE FACT
+========================================================= */
+
+.fact-box {
+    margin-top: 24px;
+    padding: 20px;
+    border-left: 4px solid #d8a45b;
+    background: linear-gradient(
+        90deg,
+        rgba(216,164,91,0.1),
+        rgba(216,164,91,0.02)
+    );
+    border-radius: 0 15px 15px 0;
+    color: #ddd0c5;
+    line-height: 1.7;
+}
+
+.fact-box strong {
+    color: #d8a45b;
+}
+
+
+/* =========================================================
+   DISCOVERY CARDS
+========================================================= */
+
+.discovery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-top: 25px;
+}
+
+.discovery {
+    padding: 24px;
+    border: 1px solid #4c3825;
+    border-radius: 18px;
+    background: rgba(16,11,8,0.6);
+    transition: 0.3s;
+}
+
+.discovery:hover {
+    border-color: #d8a45b;
+    transform: translateY(-5px);
+}
+
+.discovery-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.discovery h3 {
+    color: #e1c18f;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.discovery p {
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline {
+    margin-top: 30px;
+    margin-left: 10px;
+    border-left: 2px solid #574027;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 30px 30px;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background: #d8a45b;
+    border-radius: 50%;
+    left: -7px;
+    top: 3px;
+    box-shadow: 0 0 15px rgba(216,164,91,0.45);
+}
+
+.timeline-year {
+    color: #d8a45b;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+}
+
+.timeline-item h3 {
+    margin-bottom: 7px;
+    font-size: 18px;
+}
+
+.timeline-item p {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PROTECTION STEPS
+========================================================= */
+
+.protection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.protection-step {
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #4b3724;
+    background: rgba(14,10,7,0.65);
+    position: relative;
+    transition: 0.35s;
+}
+
+.protection-step:hover {
+    border-color: #d8a45b;
+    transform: translateY(-6px);
+}
+
+.step-number {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d8a45b;
+    color: #100c09;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.protection-step h3 {
+    margin-bottom: 9px;
+    color: #e2c08d;
+}
+
+.protection-step p {
+    font-size: 13px;
+    margin: 0;
+}
+
+
+/* =========================================================
+   ROBOGUIDE PANEL
+========================================================= */
+
+.roboguide-panel {
+    padding: 40px;
+    margin-bottom: 28px;
+    border: 1px solid #8a6335;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(216,164,91,0.12), transparent 30%),
+        linear-gradient(135deg, #302114, #17100c);
+    position: relative;
+    overflow: hidden;
+}
+
+.roboguide-panel::before {
+    content: "ROBOGUIDE";
+    position: absolute;
+    right: -30px;
+    bottom: -35px;
+    font-size: 75px;
+    font-weight: 900;
+    color: rgba(216,164,91,0.035);
+}
+
+.ai-label {
+    color: #d8a45b;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.roboguide-panel h2 {
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.roboguide-panel p {
+    color: #c9bdb2;
+    line-height: 1.8;
+    max-width: 850px;
+}
+
+
+/* =========================================================
+   RANDOM FACT
+========================================================= */
+
+.fact-machine {
+    margin-top: 25px;
+    padding: 25px;
+    border: 1px solid #493522;
+    border-radius: 20px;
+    background: rgba(10,7,5,0.55);
+    text-align: center;
+}
+
+.fact-machine h3 {
+    color: #d8a45b;
+    margin-bottom: 12px;
+}
+
+#randomFact {
+    min-height: 50px;
+    color: #c9beb5;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.fact-button {
+    border: 1px solid #d8a45b;
+    background: transparent;
+    color: #d8a45b;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.fact-button:hover {
+    background: #d8a45b;
+    color: #100c09;
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   CHALLENGE
+========================================================= */
+
+.challenge {
+    padding: 35px;
+    border-radius: 25px;
+    border: 1px solid #4e3925;
+    background:
+        linear-gradient(145deg, #21160e, #120c08);
+    margin-bottom: 28px;
+}
+
+.challenge-label {
+    color: #d8a45b;
+    letter-spacing: 2px;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.challenge h2 {
+    margin-bottom: 12px;
+}
+
+.question {
+    color: #c9bdb3;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.answer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.answer {
+    border: 1px solid #584027;
+    background: #17100b;
+    color: #c7b9ab;
+    padding: 12px 17px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.answer:hover {
+    border-color: #d8a45b;
+    color: #d8a45b;
+}
+
+.answer.correct {
+    border-color: #79ce68;
+    color: #9ce88b;
+    background: rgba(70,130,60,0.1);
+}
+
+.answer.wrong {
+    border-color: #c76c55;
+    color: #e79780;
+}
+
+#challengeResult {
+    margin-top: 18px;
+    min-height: 25px;
+    color: #d8a45b;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+
+.navigation-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.button {
+    display: inline-block;
+    padding: 14px 23px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary {
+    background: #d8a45b;
+    color: #100c09;
+}
+
+.secondary {
+    border: 1px solid #d8a45b;
+    color: #d8a45b;
+}
+
+.button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+.secondary:hover {
+    background: #d8a45b;
+    color: #100c09;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: rgba(0,0,0,0.93);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-image {
+    max-width: min(850px, 95vw);
+    max-height: 85vh;
+    border: 2px solid #d8a45b;
+    border-radius: 16px;
+    box-shadow: 0 0 60px rgba(216,164,91,0.18);
+}
+
+.close {
+    position: absolute;
+    right: 30px;
+    top: 22px;
+    color: white;
+    font-size: 38px;
+    cursor: pointer;
+}
+
+.modal-text {
+    position: absolute;
+    bottom: 20px;
+    color: #d8a45b;
+    font-size: 13px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 35px 20px;
+    border-top: 1px solid #35271b;
+    color: #756b63;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+footer strong {
+    color: #d8a45b;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bird-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-wrapper {
+        max-width: 420px;
+        margin: auto;
+        width: 100%;
+    }
+
+    .discovery-grid,
+    .protection-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .system-status {
+        display: none;
+    }
+
+    .hero {
+        min-height: 520px;
+        padding: 70px 20px;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .section,
+    .roboguide-panel,
+    .challenge {
+        padding: 25px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bird-image {
+        height: 400px;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+    }
+
+    .button {
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .bird-image {
+        height: 350px;
+    }
+
+    .nav-right {
+        gap: 10px;
+    }
+
+    .back-link {
+        font-size: 11px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="particles">
+
+```
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+```
+
+</div>
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+```
+<div class="logo">
+    Robo<span>Guide</span>
+</div>
+
+
+<div class="nav-right">
+
+    <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        SYSTEM ONLINE
+
+    </div>
+
+
+    <a href="explore.html" class="back-link">
+        ← Heritage Explorer
+    </a>
+
+</div>
+```
+
+</nav>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+```
+<div class="hero-glow"></div>
+
+
+<div class="hero-content">
+
+
+    <div class="system-pill">
+
+        <span class="status-dot"></span>
+
+        ROBOGUIDE HERITAGE SYSTEM
+
+    </div>
+
+
+    <div class="hero-label">
+
+        GREAT ZIMBABWE • CULTURAL HERITAGE
+
+    </div>
+
+
+    <h1>
+
+        Zimbabwe <span>Birds</span>
+
+    </h1>
+
+
+    <p class="hero-description">
+
+        Meet one of the most recognisable symbols
+        connected with Great Zimbabwe and discover
+        the story carved into Zimbabwe's stone heritage.
+
+    </p>
+
+
+    <a href="#discover" class="scroll-button">
+
+        ↓ Begin Heritage Discovery
+
+    </a>
+
+</div>
+```
+
+</header>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+<div class="container" id="discover">
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats">
+
+```
+<div class="stat-card">
+
+    <div class="stat-icon">🐦</div>
+
+    <span class="stat-number">8</span>
+
+    <span class="stat-label">
+        Famous Zimbabwe Birds
+    </span>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">🪨</div>
+
+    <span class="stat-number">Soapstone</span>
+
+    <span class="stat-label">
+        Material used for the carvings
+    </span>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">🏛️</div>
+
+    <span class="stat-number">Great Zimbabwe</span>
+
+    <span class="stat-label">
+        Archaeological connection
+    </span>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">🛡️</div>
+
+    <span class="stat-number">Protect</span>
+
+    <span class="stat-label">
+        Heritage for future generations
+    </span>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     REAL BIRD
+===================================================== -->
+
+<section class="section">
+
+```
+<div class="bird-grid">
+
+
+    <div class="photo-wrapper">
+
+
+        <div
+            class="photo-frame"
+            onclick="openModal()">
+
+
+            <div class="artefact-badge">
+
+                HERITAGE ARTEFACT
+
+            </div>
+
+
+            <img
+                src="images/zimbabwe-bird.jpg"
+                alt="Zimbabwe Bird soapstone sculpture"
+                class="bird-image"
+            >
+
+
+            <div class="photo-caption">
+
+                <strong>
+                    The Zimbabwe Bird
+                </strong>
+
+                <small>
+                    Soapstone sculpture associated with Great Zimbabwe
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="zoom-hint">
+
+            🔍 Tap / click the image to explore it
+
+        </div>
+
+
+    </div>
+
+
+    <div>
+
+
+        <h2>
+            🪨 Meet the Zimbabwe Bird
+        </h2>
+
+
+        <p>
+
+            The Zimbabwe Birds are famous carved
+            soapstone sculptures associated with
+            Great Zimbabwe.
+
+        </p>
+
+
+        <p>
+
+            Their distinctive bird-like forms make
+            them some of the most recognisable
+            artefacts connected with the ancient
+            settlement.
+
+        </p>
+
+
+        <div class="fact-box">
+
+            <strong>ROBOGUIDE FACT:</strong><br>
+
+            Eight famous soapstone birds are associated
+            with Great Zimbabwe. Six were found in
+            connection with the Eastern Enclosure of
+            the Hill Complex.
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     DISCOVERY
+===================================================== -->
+
+<section class="section">
+
+```
+<h2>
+    🔎 Heritage Discovery
+</h2>
+
+
+<p>
+
+    The Zimbabwe Birds are more than sculptures.
+    They connect archaeology, culture, identity
+    and the story of Great Zimbabwe.
+
+</p>
+
+
+<div class="discovery-grid">
+
+
+    <div class="discovery">
+
+        <div class="discovery-icon">
+            🪨
+        </div>
+
+        <h3>
+            Ancient Craft
+        </h3>
+
+        <p>
+
+            The birds demonstrate the skill of
+            stone carving associated with Great
+            Zimbabwe.
+
+        </p>
+
+    </div>
+
+
+    <div class="discovery">
+
+        <div class="discovery-icon">
+            👑
+        </div>
+
+        <h3>
+            Meaning
+        </h3>
+
+        <p>
+
+            Researchers have suggested possible
+            links with status, religious ideas
+            or royal authority.
+
+        </p>
+
+    </div>
+
+
+    <div class="discovery">
+
+        <div class="discovery-icon">
+            🇿🇼
+        </div>
+
+        <h3>
+            National Symbol
+        </h3>
+
+        <p>
+
+            The Zimbabwe Bird became an important
+            symbol of modern Zimbabwean identity.
+
+        </p>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     HISTORY TIMELINE
+===================================================== -->
+
+<section class="section">
+
+```
+<h2>
+    📜 Journey Through Time
+</h2>
+
+
+<div class="timeline">
+
+
+    <div class="timeline-item">
+
+        <div class="timeline-year">
+            ANCIENT ERA
+        </div>
+
+        <h3>
+            Great Zimbabwe Flourishes
+        </h3>
+
+        <p>
+
+            Great Zimbabwe developed into a major
+            centre known for its impressive stone
+            architecture.
+
+        </p>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+        <div class="timeline-year">
+            HISTORICAL PERIOD
+        </div>
+
+        <h3>
+            Stone Birds
+        </h3>
+
+        <p>
+
+            Soapstone bird sculptures were associated
+            with important areas of the settlement.
+
+        </p>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+        <div class="timeline-year">
+            MODERN ZIMBABWE
+        </div>
+
+        <h3>
+            A National Symbol
+        </h3>
+
+        <p>
+
+            The Zimbabwe Bird became strongly connected
+            with Zimbabwe's national identity.
+
+        </p>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+        <div class="timeline-year">
+            TODAY
+        </div>
+
+        <h3>
+            Protecting the Story
+        </h3>
+
+        <p>
+
+            Heritage sites and artefacts continue to
+            require responsible care, education and
+            conservation.
+
+        </p>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     WHY IMPORTANT
+===================================================== -->
+
+<section class="section">
+
+```
+<h2>
+    🇿🇼 Why Is This Heritage Important?
+</h2>
+
+
+<p>
+
+    Heritage helps communities understand where
+    they came from and how societies developed.
+
+</p>
+
+
+<p>
+
+    The Zimbabwe Birds connect the ancient history
+    of Great Zimbabwe with Zimbabwe's modern
+    cultural identity.
+
+</p>
+
+
+<p>
+
+    Protecting heritage therefore means protecting
+    physical objects as well as the knowledge,
+    stories and cultural meaning connected to them.
+
+</p>
+
+
+<div class="fact-box">
+
+    💡 <strong>Think like a Heritage Guardian:</strong>
+
+    If an artefact could tell you one story about
+    the people who created it, what would you ask?
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     HOW ROBOGUIDE PROTECTS
+===================================================== -->
+
+<section class="section">
+
+```
+<h2>
+    🛡️ How Does RoboGuide Protect Heritage?
+</h2>
+
+
+<p>
+
+    RoboGuide combines education, monitoring and
+    responsible visitor behaviour to support heritage
+    protection.
+
+</p>
+
+
+<div class="protection-grid">
+
+
+    <div class="protection-step">
+
+        <div class="step-number">
+            1
+        </div>
+
+        <h3>
+            👀 Detect
+        </h3>
+
+        <p>
+
+            Sensors can detect when a visitor moves
+            into an area where they should not go.
+
+        </p>
+
+    </div>
+
+
+    <div class="protection-step">
+
+        <div class="step-number">
+            2
+        </div>
+
+        <h3>
+            🔔 Warn
+        </h3>
+
+        <p>
+
+            RoboGuide can activate a warning so the
+            visitor knows to move back and respect
+            the protected area.
+
+        </p>
+
+    </div>
+
+
+    <div class="protection-step">
+
+        <div class="step-number">
+            3
+        </div>
+
+        <h3>
+            🧠 Educate
+        </h3>
+
+        <p>
+
+            Instead of simply saying "do not touch",
+            RoboGuide explains why the heritage
+            matters.
+
+        </p>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     ROBOGUIDE SYSTEM
+===================================================== -->
+
+<section class="roboguide-panel">
+
+```
+<div class="ai-label">
+
+    🤖 ROBOGUIDE HERITAGE INTELLIGENCE
+
+</div>
+
+
+<h2>
+
+    Technology meets culture.
+
+</h2>
+
+
+<p>
+
+    RoboGuide is designed as a smart heritage guide
+    and guardian. It can introduce visitors to
+    cultural information, detect interference around
+    protected areas, provide warnings and record
+    useful incident information for heritage managers.
+
+</p>
+
+
+<div class="fact-machine">
+
+
+    <h3>
+        🧠 RoboGuide Knowledge Scanner
+    </h3>
+
+
+    <p id="randomFact">
+
+        Click the button to receive a heritage fact.
+
+    </p>
+
+
+    <button
+        class="fact-button"
+        onclick="generateFact()">
+
+        🔄 Discover a Fact
+
+    </button>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     CHALLENGE
+===================================================== -->
+
+<section class="challenge">
+
+```
+<div class="challenge-label">
+    🧩 ROBOGUIDE HERITAGE CHALLENGE
+</div>
+
+
+<h2>
+    What should a visitor do near a protected artefact?
+</h2>
+
+
+<p class="question">
+
+    Choose the response that best protects
+    Zimbabwe's cultural heritage.
+
+</p>
+
+
+<div class="answer-buttons">
+
+
+    <button
+        class="answer"
+        onclick="checkAnswer(this, false)">
+
+        Touch the artefact
+
+    </button>
+
+
+    <button
+        class="answer"
+        onclick="checkAnswer(this, true)">
+
+        Keep a safe distance and respect it
+
+    </button>
+
+
+    <button
+        class="answer"
+        onclick="checkAnswer(this, false)">
+
+        Climb around it
+
+    </button>
+
+
+    <button
+        class="answer"
+        onclick="checkAnswer(this, false)">
+
+        Move the artefact
+
+    </button>
+
+
+</div>
+
+
+<div id="challengeResult"></div>
+```
+
+</section>
+
+<!-- =====================================================
+     FINAL MESSAGE
+===================================================== -->
+
+<section class="section">
+
+```
+<h2>
+    🌍 The Heritage Guardian Mission
+</h2>
+
+
+<p>
+
+    Imagine visiting Great Zimbabwe and having a
+    robotic guide that can tell you the story behind
+    what you are seeing while also helping protect
+    the site.
+
+</p>
+
+
+<p>
+
+    That is the idea behind RoboGuide:
+
+    <strong style="color:#d8a45b;">
+        Learn. Respect. Protect.
+    </strong>
+
+</p>
+
+
+<div class="navigation-buttons">
+
+
+    <a
+        href="explore.html"
+        class="button primary">
+
+        🏛️ Explore Great Zimbabwe
+
+    </a>
+
+
+    <a
+        href="learn.html"
+        class="button secondary">
+
+        📚 Learning Hub
+
+    </a>
+
+
+    <a
+        href="index.html"
+        class="button secondary">
+
+        🏠 RoboGuide Home
+
+    </a>
+
+
+</div>
+```
+
+</section>
+
+</div>
+
+</main>
+
+<!-- =====================================================
+     IMAGE MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="imageModal"
+    onclick="closeModal()">
+
+```
+<span
+    class="close"
+    onclick="closeModal()">
+
+    ×
+
+</span>
+
+
+<img
+    src="images/zimbabwe-bird.jpg"
+    alt="Zimbabwe Bird enlarged"
+    class="modal-image"
+    onclick="event.stopPropagation()"
+>
+
+
+<div class="modal-text">
+
+    Zimbabwe Bird • Great Zimbabwe Heritage
+
+</div>
+```
+
+</div>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+```
+<strong>RoboGuide</strong>
+
+<br>
+
+Zimbabwe Heritage Explorer
+
+<br>
+
+Learn • Respect • Protect 🇿🇼
+```
+
+</footer>
+
+<script>
+
+/* =========================================================
+   IMAGE MODAL
+========================================================= */
+
+function openModal() {
+
+    document
+        .getElementById("imageModal")
+        .classList.add("active");
+
+}
+
+
+function closeModal() {
+
+    document
+        .getElementById("imageModal")
+        .classList.remove("active");
+
+}
+
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        closeModal();
+
+    }
+
+});
+
+
+/* =========================================================
+   ROBOGUIDE FACT GENERATOR
+========================================================= */
+
+const facts = [
+
+    "Eight famous soapstone birds are associated with Great Zimbabwe.",
+
+    "Six of the famous birds were found in connection with the Eastern Enclosure of the Hill Complex.",
+
+    "The Zimbabwe Birds are carved from soapstone.",
+
+    "Great Zimbabwe is famous for its impressive dry-stone architecture.",
+
+    "The Zimbabwe Bird became an important symbol of Zimbabwean identity.",
+
+    "The exact meaning of the bird sculptures is not completely known.",
+
+    "Protecting heritage means protecting objects, places, stories and knowledge.",
+
+    "RoboGuide combines heritage education with technology and visitor protection."
+
+];
+
+
+function generateFact() {
+
+    const factBox =
+        document.getElementById("randomFact");
+
+    const random =
+        Math.floor(Math.random() * facts.length);
+
+    factBox.style.opacity = "0";
+
+    setTimeout(function() {
+
+        factBox.textContent = facts[random];
+
+        factBox.style.opacity = "1";
+
+    }, 200);
+
+}
+
+
+/* =========================================================
+   HERITAGE CHALLENGE
+========================================================= */
+
+function checkAnswer(button, correct) {
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+
+        btn.disabled = true;
+
+    });
+
+
+    const result =
+        document.getElementById("challengeResult");
+
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        result.textContent =
+            "✓ Correct! You are thinking like a Heritage Guardian.";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        result.textContent =
+            "Try again. Heritage should be treated with care and respect.";
+
+    }
+
+}
+
+
+/* =========================================================
+   RANDOM HERO FACT ON LOAD
+========================================================= */
+
+window.addEventListener("load", function() {
+
+    setTimeout(function() {
+
+        generateFact();
+
+    }, 700);
+
+});
+
+</script>
+
+</body>
+
+</html>

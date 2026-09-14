@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoboGuide AI | Smart Heritage</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#100c09;
+    color:#f5ead8;
+    min-height:100vh;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 7%;
+    background:#17100c;
+    border-bottom:1px solid #3c291b;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#f5ead8;
+}
+
+.logo span{
+    color:#d8a45b;
+}
+
+nav a{
+    color:#e9dcc8;
+    text-decoration:none;
+    margin-left:22px;
+}
+
+nav a:hover{
+    color:#d8a45b;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.hero{
+    text-align:center;
+    padding:55px 20px 30px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#d8a45b;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:#cbbca8;
+    line-height:1.7;
+}
+
+.ai-label{
+    display:inline-block;
+    margin-bottom:15px;
+    padding:7px 14px;
+    border:1px solid #80603a;
+    border-radius:30px;
+    color:#d8a45b;
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+.chat-box{
+    max-width:900px;
+    margin:25px auto 60px;
+    background:#18110d;
+    border:1px solid #3d2a1c;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.chat-header{
+    padding:18px 22px;
+    background:#21160f;
+    border-bottom:1px solid #3d2a1c;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.chat-title{
+    font-weight:bold;
+    color:#f1dfc5;
+}
+
+.status{
+    color:#83c98b;
+    font-size:13px;
+}
+
+.messages{
+    height:470px;
+    overflow-y:auto;
+    padding:25px;
+}
+
+.message{
+    display:flex;
+    margin-bottom:18px;
+}
+
+.message.user{
+    justify-content:flex-end;
+}
+
+.bubble{
+    max-width:78%;
+    padding:14px 17px;
+    border-radius:15px;
+    line-height:1.55;
+    white-space:pre-line;
+}
+
+.bot .bubble{
+    background:#281b13;
+    border:1px solid #4b3423;
+}
+
+.user .bubble{
+    background:#76562f;
+    color:white;
+}
+
+.time{
+    font-size:10px;
+    opacity:.55;
+    margin-top:6px;
+}
+
+.quick{
+    padding:15px 20px;
+    border-top:1px solid #3d2a1c;
+}
+
+.quick-title{
+    font-size:12px;
+    color:#a99782;
+    margin-bottom:10px;
+}
+
+.quick-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.quick-buttons button{
+    background:#24180f;
+    border:1px solid #5a3d25;
+    color:#e8d8c1;
+    padding:8px 12px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.quick-buttons button:hover{
+    background:#382516;
+    border-color:#d8a45b;
+}
+
+.input-area{
+    display:flex;
+    gap:10px;
+    padding:18px;
+    border-top:1px solid #3d2a1c;
+}
+
+.input-area input{
+    flex:1;
+    background:#0f0b08;
+    border:1px solid #4c3523;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    outline:none;
+}
+
+.input-area input:focus{
+    border-color:#d8a45b;
+}
+
+.send-btn,
+.voice-btn,
+.clear-btn{
+    border:none;
+    border-radius:12px;
+    padding:0 17px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.send-btn{
+    background:#d8a45b;
+    color:#160f09;
+}
+
+.voice-btn{
+    background:#382516;
+    color:#e7d7c0;
+    border:1px solid #63462b;
+}
+
+.clear-btn{
+    background:#24170f;
+    color:#d6c5ae;
+    border:1px solid #49301f;
+}
+
+.controls{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:15px 20px 22px;
+}
+
+.language button{
+    background:#21160f;
+    color:#d9c8b0;
+    border:1px solid #4d3522;
+    padding:7px 12px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.language button.active{
+    border-color:#d8a45b;
+    color:#d8a45b;
+}
+
+.voice-status{
+    text-align:center;
+    font-size:13px;
+    color:#a99782;
+    min-height:20px;
+}
+
+.typing{
+    display:flex;
+    gap:4px;
+    align-items:center;
+}
+
+.typing span{
+    width:7px;
+    height:7px;
+    background:#d8a45b;
+    border-radius:50%;
+    animation:blink 1.2s infinite;
+}
+
+.typing span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,80%,100%{opacity:.25}
+    40%{opacity:1}
+}
+
+.suggestions{
+    margin-top:12px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.suggestion{
+    border:1px solid #5b4028;
+    background:#1c120d;
+    color:#d8a45b;
+    border-radius:15px;
+    padding:6px 10px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid #3d2a1c;
+    color:#8e7d69;
+    font-size:13px;
+}
+
+footer span{
+    color:#d8a45b;
+}
+
+@media(max-width:700px){
+    .hero h1{
+        font-size:36px;
+    }
+
+    .messages{
+        height:430px;
+    }
+
+    .bubble{
+        max-width:88%;
+    }
+
+    .input-area{
+        flex-wrap:wrap;
+    }
+
+    .input-area input{
+        flex-basis:100%;
+    }
+
+    .send-btn,
+    .voice-btn,
+    .clear-btn{
+        height:42px;
+        flex:1;
+    }
+}
+</style>
+
+<style id="roboguide-eye-catching-upgrade">
+:root{
+  --rg-bg:#080604;
+  --rg-panel:rgba(29,20,13,.78);
+  --rg-panel2:rgba(48,32,19,.72);
+  --rg-gold:#e5b86a;
+  --rg-gold2:#ffd98c;
+  --rg-cream:#fff5df;
+  --rg-muted:#cdbb9e;
+  --rg-green:#79c99b;
+  --rg-red:#ff806e;
+  --rg-line:rgba(229,184,106,.22);
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 12% 10%,rgba(229,184,106,.13),transparent 28%),
+    radial-gradient(circle at 88% 20%,rgba(82,133,103,.12),transparent 25%),
+    linear-gradient(135deg,#080604 0%,#130d08 48%,#090604 100%) !important;
+  color:var(--rg-cream);
+}
+body:before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  opacity:.22;
+  background-image:
+    radial-gradient(circle at 20% 30%,#fff 0 1px,transparent 1.5px),
+    radial-gradient(circle at 70% 70%,#e5b86a 0 1px,transparent 1.5px),
+    radial-gradient(circle at 42% 82%,#fff 0 1px,transparent 1.5px);
+  background-size:170px 170px,230px 230px,310px 310px;
+}
+body>*{position:relative;z-index:1}
+header,.navbar,.topbar{
+  backdrop-filter:blur(18px);
+  background:rgba(9,6,4,.72) !important;
+  border-bottom:1px solid var(--rg-line) !important;
+}
+.logo,.brand,.site-title{
+  letter-spacing:.06em;
+  text-shadow:0 0 22px rgba(229,184,106,.28);
+}
+button,.btn,a.button,.nav-btn{
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;
+}
+button:hover,.btn:hover,a.button:hover,.nav-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,.3),0 0 18px rgba(229,184,106,.12);
+}
+.card,.panel,.feature,.lesson-card,.message,.chat-card,.hero-card{
+  border:1px solid var(--rg-line) !important;
+  background:linear-gradient(145deg,rgba(46,31,18,.82),rgba(17,11,7,.82)) !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.025);
+  backdrop-filter:blur(12px);
+}
+.card:hover,.panel:hover,.feature:hover,.lesson-card:hover{
+  border-color:rgba(229,184,106,.48) !important;
+  box-shadow:0 20px 55px rgba(0,0,0,.35),0 0 28px rgba(229,184,106,.08);
+}
+h1,h2,h3{
+  text-wrap:balance;
+}
+h1{
+  background:linear-gradient(90deg,var(--rg-cream),var(--rg-gold2),var(--rg-cream));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% auto;
+  animation:rgShimmer 6s linear infinite;
+}
+@keyframes rgShimmer{to{background-position:200% center}}
+.hero,.hero-section,.landing,.home-hero{
+  min-height:58vh;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+}
+.hero:after,.hero-section:after,.landing:after,.home-hero:after{
+  content:"";
+  position:absolute;right:-10%;bottom:-35%;
+  width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(229,184,106,.14),transparent 66%);
+  animation:rgPulse 5s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes rgPulse{50%{transform:scale(1.12);opacity:.65}}
+.rg-quick-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:14px;margin:28px 0;
+}
+.rg-quick{
+  padding:18px;border:1px solid var(--rg-line);border-radius:18px;
+  background:linear-gradient(145deg,rgba(54,37,21,.78),rgba(18,12,8,.82));
+  text-decoration:none;color:var(--rg-cream);
+  position:relative;overflow:hidden;
+}
+.rg-quick:before{
+  content:"";position:absolute;inset:-80% -30%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+  transform:rotate(20deg);animation:rgSweep 5s infinite;
+}
+@keyframes rgSweep{0%,65%{left:-120%}100%{left:120%}}
+.rg-icon{font-size:2rem;display:block;margin-bottom:8px}
+.rg-statbar{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0;
+}
+.rg-stat{
+  padding:16px;text-align:center;border-radius:16px;
+  background:rgba(10,7,5,.62);border:1px solid var(--rg-line);
+}
+.rg-stat strong{display:block;font-size:1.65rem;color:var(--rg-gold2)}
+.rg-stat span{font-size:.82rem;color:var(--rg-muted)}
+.rg-live{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 12px;
+  border:1px solid rgba(121,201,155,.28);border-radius:999px;
+  color:#b9e8ca;background:rgba(35,89,59,.16);font-size:.78rem;
+}
+.rg-live i{
+  width:8px;height:8px;border-radius:50%;background:var(--rg-green);
+  box-shadow:0 0 12px var(--rg-green);animation:rgBlink 1.4s infinite;
+}
+@keyframes rgBlink{50%{opacity:.25;transform:scale(.7)}}
+.chat-card{position:relative;overflow:hidden}
+.chat-card:before{
+  content:"ROBOGUIDE • HERITAGE AI";
+  position:absolute;top:12px;right:16px;font-size:.68rem;
+  color:rgba(229,184,106,.55);letter-spacing:.13em;
+}
+.suggestions{display:none !important}
+.rg-badge{
+  display:inline-block;padding:7px 12px;border-radius:999px;
+  background:rgba(229,184,106,.1);border:1px solid var(--rg-line);
+  color:var(--rg-gold2);font-size:.78rem;
+}
+.rg-divider{
+  height:1px;background:linear-gradient(90deg,transparent,var(--rg-line),transparent);
+  margin:28px 0;
+}
+@media(max-width:700px){
+  .rg-statbar{grid-template-columns:1fr}
+  .hero,.hero-section,.landing,.home-hero{min-height:48vh}
+}
+</style>
+
+</head>
+
+<body>
+
+<section class="rg-command-center" aria-label="RoboGuide command center" style="
+max-width:1100px;margin:18px auto 0;padding:0 20px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+    <span class="rg-live"><i></i> HERITAGE SYSTEM ONLINE</span>
+    <span class="rg-badge">🇿🇼 Zimbabwean Heritage • RoboGuide</span>
+  </div>
+  <div class="rg-statbar">
+    <div class="rg-stat"><strong>01</strong><span>Guide + Guardian</span></div>
+    <div class="rg-stat"><strong>03</strong><span>Languages supported</span></div>
+    <div class="rg-stat"><strong>06</strong><span>Learning Hub topics</span></div>
+  </div>
+  <div class="rg-quick-grid">
+    <a class="rg-quick" href="explore.html"><span class="rg-icon">🏛️</span><strong>Explore Heritage</strong><br><small>Discover Great Zimbabwe</small></a>
+    <a class="rg-quick" href="learn.html"><span class="rg-icon">📚</span><strong>Learning Hub</strong><br><small>Learn, earn and unlock</small></a>
+    <a class="rg-quick" href="rockai.html"><span class="rg-icon">🤖</span><strong>Ask RoboGuide</strong><br><small>Talk to the heritage brain</small></a>
+    <a class="rg-quick" href="zimbabwe-birds.html"><span class="rg-icon">🦅</span><strong>Zimbabwe Birds</strong><br><small>Explore a national symbol</small></a>
+  </div>
+</section>
+
+
+
+<nav>
+    <div class="logo">Robo<span>Guide</span></div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="learn.html">Learning Hub</a>
+    </div>
+</nav>
+
+<section class="hero">
+
+    <div class="ai-label">ROBOGUIDE AI</div>
+
+    <h1>Meet <span>RoboGuide</span> 🤖</h1>
+
+    <p>
+        Your smart digital guide to Zimbabwean heritage, Great Zimbabwe,
+        history, culture and heritage protection.
+        Ask questions naturally and explore the knowledge stored in RoboGuide's
+        offline brain.
+    </p>
+
+</section>
+
+<div class="container">
+
+<div class="chat-box">
+
+    <div class="chat-header">
+
+        <div class="chat-title">
+            🤖 RoboGuide Heritage Assistant
+        </div>
+
+        <div class="status">
+            ● OFFLINE BRAIN
+        </div>
+
+    </div>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="quick">
+
+        <div class="quick-title">
+            Quick questions
+        </div>
+
+        <div class="quick-buttons">
+
+            <button onclick="askQuestion('What is Great Zimbabwe?')">
+                Great Zimbabwe
+            </button>
+
+            <button onclick="askQuestion('Tell me about the Great Enclosure')">
+                Great Enclosure
+            </button>
+
+            <button onclick="askQuestion('Tell me about the Hill Complex')">
+                Hill Complex
+            </button>
+
+            <button onclick="askQuestion('What is the Zimbabwe Bird?')">
+                Zimbabwe Birds
+            </button>
+
+            <button onclick="askQuestion('What is rock art?')">
+                Rock Art
+            </button>
+
+            <button onclick="askQuestion('How can we protect heritage?')">
+                Protect Heritage
+            </button>
+
+            <button onclick="askQuestion('How does RoboGuide protect heritage?')">
+                RoboGuide
+            </button>
+
+            <button onclick="askQuestion('Tell me something interesting')">
+                Interesting fact
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="input-area">
+
+        <input
+            id="userInput"
+            type="text"
+            placeholder="Ask RoboGuide something..."
+            autocomplete="off"
+        >
+
+        <button class="send-btn" onclick="sendMessage()">
+            Send
+        </button>
+
+        <button class="voice-btn" onclick="startListening()">
+            🎤 Speak
+        </button>
+
+        <button class="clear-btn" onclick="clearChat()">
+            Clear
+        </button>
+
+    </div>
+
+    <div class="controls">
+
+        <div class="language">
+
+            <button id="enBtn" class="active" onclick="setLanguage('en')">
+                English
+            </button>
+
+            <button id="snBtn" onclick="setLanguage('sn')">
+                Shona
+            </button>
+
+            <button id="ndBtn" onclick="setLanguage('nd')">
+                isiNdebele
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="voice-status" id="voiceStatus"></div>
+
+</div>
+
+</div>
+
+<footer>
+    <span>ROBOGUIDE</span>
+    • Smart Heritage • Learn • Explore • Protect
+</footer>
+
+
+<script>
+
+/* =========================================================
+   ROBOGUIDE OFFLINE AI KNOWLEDGE BRAIN
+   ========================================================= */
+
+const knowledge = [
+
+{
+    topic:"great zimbabwe",
+    keywords:[
+        "great zimbabwe",
+        "g z",
+        "great z",
+        "zimbabwe ruins",
+        "ancient zimbabwe",
+        "great zimbabwe ruins"
+    ],
+    answer:
+`Great Zimbabwe is one of Zimbabwe's most important archaeological and cultural sites.
+
+It was a major centre of settlement, leadership and trade during the Iron Age.
+
+The site is famous for its impressive dry-stone architecture, especially the Great Enclosure, Hill Complex and Valley Ruins.
+
+Great Zimbabwe is also an important symbol of Zimbabwean history and national identity.`,
+    follow:[
+        "Why was Great Zimbabwe important?",
+        "Who built Great Zimbabwe?",
+        "How were the walls made?"
+    ]
+},
+
+{
+    topic:"great zimbabwe location",
+    keywords:[
+        "where is great zimbabwe",
+        "location of great zimbabwe",
+        "great zimbabwe located",
+        "where great zimbabwe"
+    ],
+    answer:
+`Great Zimbabwe is located in southeastern Zimbabwe, near the modern town of Masvingo.
+
+The archaeological site lies among granite hills and valleys and covers a large area.`
+},
+
+{
+    topic:"great zimbabwe builders",
+    keywords:[
+        "who built great zimbabwe",
+        "builders of great zimbabwe",
+        "people who built great zimbabwe",
+        "built great zimbabwe"
+    ],
+    answer:
+`Great Zimbabwe was built by the ancestors of the Shona-speaking peoples of the region.
+
+The settlement developed over several centuries and became an important centre of political power, trade and culture.`
+},
+
+{
+    topic:"great zimbabwe period",
+    keywords:[
+        "when was great zimbabwe built",
+        "age of great zimbabwe",
+        "great zimbabwe period",
+        "how old is great zimbabwe",
+        "when great zimbabwe"
+    ],
+    answer:
+`Great Zimbabwe developed mainly between about the 11th and 15th centuries.
+
+It became especially important during the later part of this period as a centre of settlement, political authority and long-distance trade.`
+},
+
+{
+    topic:"great enclosure",
+    keywords:[
+        "great enclosure",
+        "enclosure",
+        "great wall",
+        "conical tower"
+    ],
+    answer:
+`The Great Enclosure is one of the most famous parts of Great Zimbabwe.
+
+It is surrounded by massive dry-stone walls and contains the famous Conical Tower.
+
+The enclosure demonstrates the advanced stone-building skills of the people who constructed Great Zimbabwe.`,
+    follow:[
+        "What is the Conical Tower?",
+        "Why are the walls important?",
+        "How was dry-stone construction done?"
+    ]
+},
+
+{
+    topic:"hill complex",
+    keywords:[
+        "hill complex",
+        "hill ruins",
+        "great zimbabwe hill",
+        "hill"
+    ],
+    answer:
+`The Hill Complex is located on a granite hill at Great Zimbabwe.
+
+It contains stone structures and terraces and is associated with important activities and leadership.
+
+Its elevated position also gives a strong view across parts of the surrounding landscape.`,
+    follow:[
+        "Why is the Hill Complex important?",
+        "Tell me about Great Zimbabwe's walls."
+    ]
+},
+
+{
+    topic:"dry stone",
+    keywords:[
+        "dry stone",
+        "dry stone walls",
+        "stone walls",
+        "how were the walls made",
+        "how walls were built"
+    ],
+    answer:
+`Dry-stone construction means building walls without using mortar between the stones.
+
+At Great Zimbabwe, carefully selected stones were placed and balanced to create strong walls.
+
+This technique required considerable skill, planning and knowledge of stone construction.`
+},
+
+{
+    topic:"zimbabwe birds",
+    keywords:[
+        "zimbabwe bird",
+        "zimbabwe birds",
+        "birds of zimbabwe",
+        "soapstone bird",
+        "bird sculptures",
+        "bird"
+    ],
+    answer:
+`The Zimbabwe Birds are soapstone sculptures associated with Great Zimbabwe.
+
+They have become powerful national symbols and appear on Zimbabwe's national emblems and currency history.
+
+The birds are an important example of the artistic and cultural significance of Great Zimbabwe.`,
+    follow:[
+        "Why are the Zimbabwe Birds important?",
+        "Where were the birds found?"
+    ]
+},
+
+{
+    topic:"rock art",
+    keywords:[
+        "rock art",
+        "rock painting",
+        "rock paintings",
+        "paintings",
+        "cave drawings",
+        "ancient paintings"
+    ],
+    answer:
+`Rock art consists of images, symbols and markings created on rock surfaces.
+
+Ancient rock art can provide information about the beliefs, activities, environment and artistic traditions of past communities.
+
+Because it is part of the archaeological record, it should be protected from touching, scratching, vandalism and other forms of damage.`,
+    follow:[
+        "Why does rock art matter?",
+        "How can visitors protect rock art?"
+    ]
+},
+
+{
+    topic:"why rock art matters",
+    keywords:[
+        "why rock art matters",
+        "importance of rock art",
+        "why is rock art important",
+        "rock art important"
+    ],
+    answer:
+`Rock art matters because it can preserve evidence about people who lived in the past.
+
+It can help researchers understand ancient beliefs, animals, environments, activities and artistic traditions.
+
+Once damaged, some of this information may be impossible to recover.`
+},
+
+{
+    topic:"heritage protection",
+    keywords:[
+        "protect heritage",
+        "heritage protection",
+        "protect cultural heritage",
+        "save heritage",
+        "conserve heritage",
+        "heritage conservation"
+    ],
+    answer:
+`Heritage can be protected by preventing physical damage, controlling visitor behaviour, monitoring sensitive areas and educating communities and tourists.
+
+Technology can support conservation by detecting possible interference, recording incidents and providing useful information to heritage managers.`,
+    follow:[
+        "How does RoboGuide protect heritage?",
+        "Why should visitors not touch heritage?"
+    ]
+},
+
+{
+    topic:"visitor behaviour",
+    keywords:[
+        "visitor behaviour",
+        "visitor rules",
+        "what should visitors do",
+        "heritage visitors",
+        "tourist rules",
+        "rules"
+    ],
+    answer:
+`Visitors should respect heritage sites by following site rules, staying in permitted areas, avoiding touching or damaging cultural remains and listening to conservation staff.
+
+Good visitor behaviour helps future generations experience the same heritage.`
+},
+
+{
+    topic:"archaeology",
+    keywords:[
+        "archaeology",
+        "archaeologist",
+        "archaeologists",
+        "archaeological"
+    ],
+    answer:
+`Archaeology is the study of past human societies through material evidence.
+
+Archaeologists can study buildings, pottery, tools, sculptures, soil layers and other remains to learn how people lived in the past.`
+},
+
+{
+    topic:"trade",
+    keywords:[
+        "trade",
+        "trading",
+        "great zimbabwe trade",
+        "traded"
+    ],
+    answer:
+`Great Zimbabwe was connected to long-distance trade networks.
+
+Archaeological discoveries have provided evidence of connections between Great Zimbabwe and other parts of Africa and the wider Indian Ocean trading world.
+
+Trade helped make the settlement an important economic centre.`
+},
+
+{
+    topic:"national identity",
+    keywords:[
+        "national identity",
+        "identity",
+        "why great zimbabwe important to zimbabwe",
+        "symbol of zimbabwe"
+    ],
+    answer:
+`Great Zimbabwe is important to Zimbabwean national identity because it demonstrates the achievements of African societies in architecture, organisation, culture and trade.
+
+The site's name is also connected to the modern name of the country.`
+},
+
+{
+    topic:"stone architecture",
+    keywords:[
+        "stone architecture",
+        "stone building",
+        "stone construction",
+        "architecture",
+        "dry stone architecture"
+    ],
+    answer:
+`Great Zimbabwe is famous for dry-stone architecture.
+
+Its builders created large walls and structures by carefully arranging stones without traditional mortar.
+
+The scale and craftsmanship of these structures demonstrate sophisticated architectural knowledge.`
+},
+
+{
+    topic:"smart heritage",
+    keywords:[
+        "smart heritage",
+        "smart technology",
+        "technology heritage",
+        "heritage technology"
+    ],
+    answer:
+`Smart heritage means using technology to help people understand, experience and protect cultural heritage.
+
+Examples include sensors, digital guides, educational screens, data collection and digital learning platforms.
+
+RoboGuide applies this idea by combining education with basic heritage monitoring.`
+},
+
+{
+    topic:"roboguide",
+    keywords:[
+        "roboguide",
+        "robo guide",
+        "robot guide",
+        "what is roboguide",
+        "tell me about roboguide"
+    ],
+    answer:
+`RoboGuide is a smart robotic heritage guide and guardian.
+
+It is designed to help visitors experience Zimbabwe's historical sites while giving heritage managers information that can help with site management.
+
+RoboGuide combines education, visitor awareness, sensors, alerts and digital learning.`,
+    follow:[
+        "How does RoboGuide protect heritage?",
+        "What sensors does RoboGuide use?",
+        "Why was RoboGuide created?"
+    ]
+},
+
+{
+    topic:"how roboguide protects",
+    keywords:[
+        "how does roboguide protect",
+        "how roboguide protects",
+        "roboguide protection",
+        "robot protect heritage",
+        "how does the robot protect"
+    ],
+    answer:
+`RoboGuide can use an infrared sensor to detect movement or interference near a protected area.
+
+When interference is detected, the system can activate a warning through a buzzer and display a message on its screen.
+
+The incident can also be recorded so that heritage managers can have information about visitor activity.
+
+This makes RoboGuide both an educational guide and a basic monitoring system.`
+},
+
+{
+    topic:"roboguide sensors",
+    keywords:[
+        "roboguide sensor",
+        "sensors roboguide",
+        "what sensor",
+        "infrared sensor",
+        "ir sensor",
+        "sensor detect"
+    ],
+    answer:
+`RoboGuide can use an infrared sensor to detect nearby movement or interference.
+
+A Raspberry Pi Pico W can process the sensor signal and control outputs such as the display and buzzer.
+
+The sensor therefore acts as part of RoboGuide's protection system.`
+},
+
+{
+    topic:"roboguide data",
+    keywords:[
+        "roboguide data",
+        "incident records",
+        "record incidents",
+        "data protection",
+        "manager data",
+        "why record incidents"
+    ],
+    answer:
+`RoboGuide can record information about detected incidents.
+
+This information could help heritage managers identify patterns such as when interference happens most often.
+
+The goal is not simply to warn visitors, but also to provide useful information for better heritage management.`
+},
+
+{
+    topic:"robot meets culture",
+    keywords:[
+        "robot meets culture",
+        "wro",
+        "robot culture",
+        "culture and robotics"
+    ],
+    answer:
+`RoboGuide connects robotics with Zimbabwean cultural heritage.
+
+Instead of using a robot only for movement or automation, the project uses technology to educate visitors and support the protection of important cultural sites.
+
+This is the main idea behind combining robotics with culture.`
+},
+
+{
+    topic:"learning hub",
+    keywords:[
+        "learning hub",
+        "lessons",
+        "learn",
+        "education"
+    ],
+    answer:
+`The RoboGuide Learning Hub is designed to help users learn about Zimbabwean heritage.
+
+Topics include Great Zimbabwe, stone architecture, Zimbabwe Birds, heritage protection, rock art and smart heritage.
+
+You can open the Learning Hub from the navigation menu.`
+},
+
+{
+    topic:"interesting",
+    keywords:[
+        "interesting fact",
+        "interesting",
+        "fun fact",
+        "tell me something interesting",
+        "fact"
+    ],
+    answer:
+`Here's an interesting fact:
+
+The name "Zimbabwe" is associated with the stone-built structures of Great Zimbabwe.
+
+The site therefore has a remarkable connection to the identity and name of the modern country.`
+},
+
+{
+    topic:"hello",
+    keywords:[
+        "hello",
+        "hi",
+        "hey",
+        "mhoro",
+        "salibonani",
+        "greetings"
+    ],
+    answer:
+`Mhoro! 👋
+
+I'm RoboGuide, your smart heritage guide.
+
+Ask me about Great Zimbabwe, Zimbabwe Birds, rock art, heritage protection, robotics or how RoboGuide works.`
+},
+
+{
+    topic:"thanks",
+    keywords:[
+        "thank you",
+        "thanks",
+        "thank",
+        "ndatenda",
+        "siyabonga"
+    ],
+    answer:
+`You're welcome! 😊
+
+I'm always ready to help you explore Zimbabwean heritage.`
+},
+
+{
+    topic:"goodbye",
+    keywords:[
+        "bye",
+        "goodbye",
+        "see you",
+        "till later"
+    ],
+    answer:
+`Goodbye! 👋
+
+Keep exploring, learning and protecting heritage.`
+
+}
+/*
+# RoboGuide Knowledge Base: Zimbabwean Rock Art
+
+This file is structured for use as a chatbot knowledge source (RAG context or offline lookup table). Each section is self-contained so it can be chunked and retrieved independently.
+
+---
+
+## 1. Overview
+
+Zimbabwe holds one of the highest concentrations of rock art in southern Africa. Estimates for the country as a whole range into the thousands of documented sites — one source puts the total near 30,000 sites and roughly a million individual images — with new sites still being discovered. Rock art is concentrated in two main regions:
+
+- **Matabeleland** (southwest) — home to the Matobo Hills, the country's most famous rock art landscape.
+- **Mashonaland** (north) — home to sites like Domboshava, closer to Harare.
+
+Most of the paintings were made by the **San** (also called Bushmen — see the terminology note in Section 6) during the Later Stone Age, roughly between 11,000 BC and the start of the common era, though dating is imprecise and estimates vary by source and by site.
+
+---
+
+## 2. Who made it, and when
+
+The San were hunter-gatherers who lived in small family groups — often three or four families sharing a cave — hunting antelope such as kudu and using the hides for clothing. Genetic research identifies the San as one of fourteen surviving root DNA population groups from which all modern humans evolved, with a lineage stretching back over 100,000 years, making them one of the oldest continuous cultures on Earth.
+
+**Dating note (sources disagree — present as a range, not a fixed number):**
+- Matobo Hills paintings: commonly cited as 2,000–13,000 years old; some tourism sources claim up to 20,000 years.
+- Domboshava: brown-toned paintings estimated around 13,000 years old, black-toned paintings around 2,000 years old; other sources give a range of 2,000–6,000 years for the site generally. The inconsistency across sources reflects real scientific difficulty in dating this art (see Section 4).
+- Broadly, San painting in the region spans from the Later Stone Age up to about 2,000 years ago, when Bantu-speaking farmers began migrating into the area and eventually displaced San communities.
+- A smaller, later layer of art — more schematic, often white, applied thickly by finger or hand — was made by **Iron Age farmers**, not San hunter-gatherers. Not every image at a given site is from the same people or era.
+
+---
+
+## 3. Key sites
+
+### Matobo Hills (Matabeleland, southwest Zimbabwe)
+- A granite hill region over 2,000 sq km, with an estimated 3,000 rock art sites — one of Africa's highest concentrations.
+- UNESCO World Heritage Site since 2003.
+- Occupied since at least the Middle Stone Age, with rock shelters showing continuous use since the Early Stone Age.
+- Depictions are dominated by human figures (more men than women, children rare), usually slender, often carrying bows and arrows, grouped in complex scenes. Kudu antelope are especially numerous. Other animals include giraffe, elephant, and rhinoceros.
+- Notable caves:
+  - **Nswatugi Cave** — vivid hunting scenes; a well-known giraffe painting.
+  - **Pomongwe Cave** — layered paintings spanning thousands of years; occupation evidence going back over 50,000 years; part of ongoing dating research (see Section 4).
+  - **White Rhino Shelter** — a striking white rhinoceros painting alongside geometric designs.
+  - **Inanke Cave** — remote (roughly a three-hour hike), with excellent displays.
+  - **Bambata Cave** — part of ongoing pigment-research collaborations.
+
+### Domboshava (Domboshawa), Mashonaland East
+- A granite dome about 27–30 km north of Harare, in the Chinamora Communal Lands.
+- Name derives from Shona "dombo" (rock) and "shava" (light brown/red) — possibly referencing the reddish lichen on the rocks, or the light-brown Shava clan totem linked to the eland (mhofu).
+- The most prominent hill, **Ngoma Kurira** ("drums sounding"), is a National Monument (protected since 1936) and popular day-trip destination from Harare.
+- Contains a nearly 100m-long panel of well-preserved paintings showing hunting scenes and both male and female human figures, plus a partially vandalized but still-visible **trance dance scene** — dancers in a line with elongated legs and elaborate headdresses, recorded by researcher Elizabeth Goodall.
+- A nearby forest of sacred Muzhanje trees is protected by local custom — the community does not cut firewood there, though the fruit is harvested.
+- Has an on-site Interpretive Centre.
+
+*(Zimbabwe also has rock art in the Eastern Highlands region — e.g., Nyanga — and engraving sites in areas with softer rock such as Chimanimani, Chipinge, and Hwange, where the local geology suited engraving over painting. Detail on these is thinner in current sources; treat as lower-confidence content.)*
+
+---
+
+## 4. Materials and technique
+
+- Paint was made from **ochre and other pigments mixed with plant extracts, eggshell, and even blood**, producing the characteristic rust-red color seen in many paintings.
+- Applied with **fingers, porcupine quills, and bird feathers** rather than brushes.
+- Because the paint is inorganic, it **cannot be radiocarbon-dated directly**. Researchers instead date associated stone tools (including grinding palettes likely used to prepare paint) and flakes of paint found in surrounding sediment, estimating minimum ages indirectly. This is why published dates vary between sources and are often given as wide ranges.
+- **Rock type determined technique**: harder granite (as at Matobo and Domboshava) was painted; softer limestone in the east (Chimanimani, Chipinge) and west (Hwange) was more often engraved.
+- Ongoing research: the **MATOBART project** (a French–Zimbabwean collaboration led by Dr. Camille Bourdier of the University of Toulouse-Jean Jaurès, working with Wits University researchers including Dr. Tammy Hodgskiss Reynard) is studying pigments and refining dating methods at Bambata and Pomongwe caves.
+
+---
+
+## 5. Meaning and interpretation
+
+- The dominant scholarly interpretation is that much San rock art depicts **the trance experiences of shamans** — spiritual healers who recorded visions from the healing/trance dance, San culture's most central ritual.
+- The term "shaman" itself is borrowed from Siberian shamanism; its exact fit with San spiritual practice is debated among scholars, but it remains the term most commonly used in the literature.
+- The **eland antelope** recurs as the San's most spiritually significant animal, closely tied to trance and ritual imagery.
+- **Therianthropes** — figures with both human and animal features — also appear and are generally read within this same spiritual/trance framework.
+- Zimbabwean rock art shares themes with San art elsewhere in southern Africa but isn't identical to it: it gives more emphasis to certain animals, includes more trees and plants than South African sites, and shows fewer trance-dance scenes in the north compared to the Drakensberg region of South Africa/Lesotho.
+- Modern scholarly consensus generally treats San rock art as **fundamentally religious/ritual art rather than simple decoration or record-keeping**.
+
+---
+
+## 6. Terminology and cultural sensitivity
+
+- **"San" and "Bushmen"** are both used in academic and popular sources. Some members of San communities consider one or both terms offensive; others use them comfortably or have reclaimed them. There is no single agreed-upon term.
+- **Recommended chatbot default:** use "San," and if a visitor asks about terminology, acknowledge the complexity rather than presenting one term as simply "correct" or "incorrect."
+- Avoid describing San culture only in the past tense — San descendants live today, primarily in the Kalahari region of Botswana and Namibia, following the community's displacement from much of its historical range.
+
+---
+
+## 7. A harder history (displacement and damage)
+
+- San communities were displaced by Bantu-speaking agriculturalists roughly 2,000 years ago, and later generations were nearly wiped out under colonial rule.
+- The art has also suffered from well-intentioned harm and neglect:
+  - In the **1920s**, some paintings were damaged by preservation attempts that used linseed oil, which ended up degrading them.
+  - In the **1980s**, some paintings were vandalized by people chipping off fragments in the mistaken belief the paint could cure AIDS.
+  - Ongoing threats include **erosion, drought, and modern vandalism** — a nonprofit (the Amagugu International Heritage Centre, near Bulawayo) has been working with local communities to document and raise awareness of at-risk sites.
+- **This is strong material for RoboGuide's "don't touch" message**: framing protection around this history — irreplaceable art already damaged once by human hands, even with good intentions — is more persuasive than a bare instruction.
+
+---
+
+## 8. Regional context (for comparison questions)
+
+- Zimbabwean rock art is part of a broader southern African tradition that also includes the Drakensberg-Maloti and Cape Fold Mountains (South Africa/Lesotho), the Brandberg and Erongo Mountains (Namibia), and Tsodilo Hills (Botswana) — several of these, including Matobo, are UNESCO World Heritage Sites.
+- Style differs by region even though much of the art is attributed to related San/hunter-gatherer groups across these countries.
+- Rock art of a similar "southern zone" style is noted for exquisitely fine detail and complex shading techniques compared to other African rock art zones.
+
+---
+
+## 9. Suggested chatbot behaviors
+
+- When a date is requested, **give a range and note that dating rock paintings directly is scientifically difficult** rather than stating one precise number as fact.
+- When asked "why can't I touch it," lead with the **conservation history** (Section 7), not just a rule.
+- When asked about meaning/symbols, present the **shamanic/trance interpretation as the leading scholarly view**, not the only possible one.
+- Keep a respectful tone around San identity and terminology (Section 6).
+- If a question falls outside this knowledge base (e.g., a very specific site not covered here), the chatbot should say so rather than inventing detail — especially useful for the offline mode, which won't have live search to fall back on.
+
+*/
+
+];
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let currentLanguage = "en";
+let lastTopic = "";
+let lastAnswer = "";
+
+const messages = document.getElementById("messages");
+const input = document.getElementById("userInput");
+const voiceStatus = document.getElementById("voiceStatus");
+
+
+/* =========================================================
+   TEXT CLEANING
+   ========================================================= */
+
+function cleanText(text){
+
+    return text
+        .toLowerCase()
+        .replace(/[^\w\s]/g," ")
+        .replace(/\s+/g," ")
+        .trim();
+
+}
+
+
+/* =========================================================
+   ALIASES
+   ========================================================= */
+
+function normalizeAliases(text){
+
+    text = cleanText(text);
+
+    const aliases = {
+
+        "g zimbabwe":"great zimbabwe",
+        "g z":"great zimbabwe",
+        "great z":"great zimbabwe",
+        "zim bird":"zimbabwe bird",
+        "zim birds":"zimbabwe birds",
+        "paintings":"rock art",
+        "cave drawings":"rock art",
+        "robot guide":"roboguide",
+        "robo guide":"roboguide",
+        "smart tech":"smart heritage"
+
+    };
+
+    for(const alias in aliases){
+
+        text = text.replace(
+            new RegExp("\\b"+alias+"\\b","g"),
+            aliases[alias]
+        );
+
+    }
+
+    return text;
+
+}
+
+
+/* =========================================================
+   TOKEN MATCHING
+   ========================================================= */
+
+function getWords(text){
+
+    return new Set(
+        cleanText(text)
+        .split(" ")
+        .filter(word => word.length > 2)
+    );
+
+}
+
+
+/* =========================================================
+   SPECIAL INTENTS
+   ========================================================= */
+
+function isGreeting(text){
+
+    return /^(hi|hello|hey|mhoro|salibonani|greetings|good morning|good afternoon|good evening)\b/i.test(text.trim());
+
+}
+
+function isThanks(text){
+
+    return /\b(thank you|thanks|thank|ndatenda|siyabonga)\b/i.test(text);
+
+}
+
+function isGoodbye(text){
+
+    return /\b(bye|goodbye|see you|see ya|till later)\b/i.test(text);
+
+}
+
+
+/* =========================================================
+   FOLLOW-UP UNDERSTANDING
+   ========================================================= */
+
+function expandQuestion(text){
+
+    const q = cleanText(text);
+
+    if(
+        /\bwhy\b/.test(q) &&
+        lastTopic
+    ){
+
+        return q + " " + lastTopic;
+
+    }
+
+    if(
+        /\bwho\b/.test(q) &&
+        lastTopic
+    ){
+
+        return q + " " + lastTopic;
+
+    }
+
+    if(
+        /\bhow\b/.test(q) &&
+        lastTopic
+    ){
+
+        return q + " " + lastTopic;
+
+    }
+
+    if(
+        /^(more|tell me more|more information|explain more|continue)$/.test(q) &&
+        lastTopic
+    ){
+
+        return lastTopic;
+
+    }
+
+    return q;
+
+}
+
+
+/* =========================================================
+   SCORE KNOWLEDGE
+   ========================================================= */
+
+function scoreKnowledge(question, item){
+
+    const q = getWords(question);
+
+    let score = 0;
+
+    item.keywords.forEach(keyword => {
+
+        const cleaned = cleanText(keyword);
+
+        if(question.includes(cleaned)){
+            score += 10;
+        }
+
+        const words = getWords(cleaned);
+
+        words.forEach(word => {
+
+            if(q.has(word)){
+                score += 2;
+            }
+
+        });
+
+    });
+
+    if(question.includes(item.topic)){
+        score += 15;
+    }
+
+    return score;
+
+}
+
+
+/* =========================================================
+   GET RESPONSE
+   ========================================================= */
+
+function getResponse(rawQuestion){
+
+    let question = normalizeAliases(rawQuestion);
+
+    question = expandQuestion(question);
+
+    if(isGreeting(rawQuestion)){
+
+        lastTopic = "great zimbabwe";
+
+        return `Mhoro! 👋
+
+I'm RoboGuide, your smart heritage guide.
+
+I can help you learn about Great Zimbabwe, the Great Enclosure, Hill Complex, Zimbabwe Birds, rock art, heritage protection and robotics.
+
+What would you like to explore?`;
+
+    }
+
+    if(isThanks(rawQuestion)){
+
+        return `You're welcome! 😊
+
+Ask me another question whenever you're ready.`;
+
+    }
+
+    if(isGoodbye(rawQuestion)){
+
+        return `Goodbye! 👋
+
+Keep learning and helping to protect Zimbabwe's heritage.`;
+
+    }
+
+    let best = null;
+    let bestScore = 0;
+
+    knowledge.forEach(item => {
+
+        const score = scoreKnowledge(question,item);
+
+        if(score > bestScore){
+
+            bestScore = score;
+            best = item;
+
+        }
+
+    });
+
+
+    if(best && bestScore >= 4){
+
+        lastTopic = best.topic;
+        lastAnswer = best.answer;
+
+        return best.answer;
+
+    }
+
+
+    /* fallback */
+
+    return `I'm still learning about that topic.
+
+Try asking me about:
+
+• Great Zimbabwe
+• Great Enclosure
+• Hill Complex
+• Zimbabwe Birds
+• Rock Art
+• Stone Architecture
+• Heritage Protection
+• Smart Heritage
+• RoboGuide
+• Robotics and sensors
+• Heritage data
+
+You can also ask a follow-up such as:
+"Why is it important?"
+"Who built it?"
+"How does it work?"`;
+
+}
+
+
+/* =========================================================
+   ADD MESSAGE
+   ========================================================= */
+
+function addMessage(text,type="bot",showSuggestions=false){
+
+    const wrapper = document.createElement("div");
+
+    wrapper.className = "message " + type;
+
+    const bubble = document.createElement("div");
+
+    bubble.className = "bubble";
+
+    bubble.innerHTML = escapeHTML(text).replace(/\n/g,"<br>");
+
+    if(showSuggestions && lastTopic){
+
+        const suggestions = document.createElement("div");
+
+        suggestions.className = "suggestions";
+
+        const questions = [
+
+            "Why is it important?",
+            "Tell me more",
+            "How does RoboGuide protect heritage?"
+
+        ];
+
+        questions.forEach(q => {
+
+            const button = document.createElement("button");
+
+            button.className = "suggestion";
+
+            button.textContent = q;
+
+            button.onclick = () => askQuestion(q);
+
+            suggestions.appendChild(button);
+
+        });
+
+        bubble.appendChild(suggestions);
+
+    }
+
+    wrapper.appendChild(bubble);
+
+    messages.appendChild(wrapper);
+
+    messages.scrollTop = messages.scrollHeight;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(text){
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   TYPING ANIMATION
+   ========================================================= */
+
+function showTyping(){
+
+    const wrapper = document.createElement("div");
+
+    wrapper.className = "message bot";
+
+    wrapper.id = "typingMessage";
+
+    wrapper.innerHTML = `
+        <div class="bubble typing">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+
+    messages.appendChild(wrapper);
+
+    messages.scrollTop = messages.scrollHeight;
+
+}
+
+
+function removeTyping(){
+
+    const typing = document.getElementById("typingMessage");
+
+    if(typing){
+        typing.remove();
+    }
+
+}
+
+
+/* =========================================================
+   SEND MESSAGE
+   ========================================================= */
+
+function sendMessage(){
+
+    const text = input.value.trim();
+
+    if(!text){
+        return;
+    }
+
+    addMessage(text,"user");
+
+    input.value = "";
+
+    showTyping();
+
+    setTimeout(() => {
+
+        removeTyping();
+
+        const answer = getResponse(text);
+
+        addMessage(answer,"bot",false);
+
+        speakText(answer);
+
+    },350);
+
+}
+
+
+/* =========================================================
+   QUICK QUESTIONS
+   ========================================================= */
+
+function askQuestion(question){
+
+    input.value = question;
+
+    sendMessage();
+
+}
+
+
+/* =========================================================
+   ENTER KEY
+   ========================================================= */
+
+input.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+        sendMessage();
+    }
+
+});
+
+
+/* =========================================================
+   CLEAR CHAT
+   ========================================================= */
+
+function clearChat(){
+
+    messages.innerHTML = "";
+
+    lastTopic = "";
+    lastAnswer = "";
+
+    addMessage(
+        `👋 Mhoro!
+
+I'm RoboGuide, your smart heritage guide.
+
+Ask me anything about Zimbabwean heritage, Great Zimbabwe, culture, conservation or how RoboGuide works.`,
+        "bot"
+    );
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+   ========================================================= */
+
+const languageText = {
+
+    en:{
+        hello:`👋 Mhoro! I'm RoboGuide, your smart heritage guide.
+
+Ask me about Zimbabwean heritage, Great Zimbabwe, culture, conservation or robotics.`
+    },
+
+    sn:{
+        hello:`👋 Mhoro! Ndini RoboGuide, mutungamiri wenyu wenhaka yetsika.
+
+Ndibvunzei nezve Great Zimbabwe, tsika, nhaka uye kuchengetedzwa kwenzvimbo dzetsika.`
+    },
+
+    nd:{
+        hello:`👋 Salibonani! NginguRoboGuide, umhlahlandlela wenu wamagugu.
+
+Ngibuzani ngeGreat Zimbabwe, amasiko, amagugu kanye lokuvikelwa kwawo.`
+    }
+
+};
+
+
+function setLanguage(language){
+
+    currentLanguage = language;
+
+    document.querySelectorAll(".language button")
+        .forEach(button => button.classList.remove("active"));
+
+    if(language === "en"){
+        document.getElementById("enBtn").classList.add("active");
+    }
+
+    if(language === "sn"){
+        document.getElementById("snBtn").classList.add("active");
+    }
+
+    if(language === "nd"){
+        document.getElementById("ndBtn").classList.add("active");
+    }
+
+    addMessage(languageText[language].hello,"bot");
+
+}
+
+
+/* =========================================================
+   VOICE OUTPUT
+   ========================================================= */
+
+function speakText(text){
+
+    if(!("speechSynthesis" in window)){
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    if(currentLanguage === "sn"){
+        utterance.lang = "en-ZW";
+    }
+    else if(currentLanguage === "nd"){
+        utterance.lang = "en-ZW";
+    }
+    else{
+        utterance.lang = "en-ZW";
+    }
+
+    utterance.rate = 0.95;
+
+    window.speechSynthesis.speak(utterance);
+
+}
+
+
+/* =========================================================
+   STOP VOICE
+   ========================================================= */
+
+function stopSpeaking(){
+
+    if("speechSynthesis" in window){
+
+        window.speechSynthesis.cancel();
+
+        voiceStatus.textContent = "Voice stopped.";
+
+    }
+
+}
+
+
+/* =========================================================
+   VOICE INPUT
+   ========================================================= */
+
+let recognition = null;
+
+const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+if(SpeechRecognition){
+
+    recognition = new SpeechRecognition();
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    recognition.lang = "en-ZW";
+
+
+    recognition.onstart = function(){
+
+        voiceStatus.textContent =
+            "🎤 Listening... speak now.";
+
+    };
+
+
+    recognition.onresult = function(event){
+
+        const transcript =
+            event.results[0][0].transcript;
+
+        input.value = transcript;
+
+        voiceStatus.textContent =
+            "Voice captured.";
+
+        sendMessage();
+
+    };
+
+
+    recognition.onerror = function(){
+
+        voiceStatus.textContent =
+            "Voice input could not be used. You can type your question.";
+
+    };
+
+
+    recognition.onend = function(){
+
+        if(
+            voiceStatus.textContent ===
+            "🎤 Listening... speak now."
+        ){
+
+            voiceStatus.textContent = "";
+
+        }
+
+    };
+
+}
+
+
+function startListening(){
+
+    if(!recognition){
+
+        voiceStatus.textContent =
+            "Voice input is not supported by this browser. Please type your question.";
+
+        return;
+
+    }
+
+    try{
+
+        recognition.start();
+
+    }
+    catch(error){
+
+        voiceStatus.textContent =
+            "Voice input is already active.";
+
+    }
+
+}
+
+
+/* =========================================================
+   STARTUP
+   ========================================================= */
+
+window.addEventListener("load",function(){
+
+    addMessage(
+        `👋 Mhoro! I'm RoboGuide, your smart heritage guide.
+
+I can answer questions about Great Zimbabwe, Zimbabwe Birds, rock art, heritage protection, smart heritage and how the RoboGuide robot works.
+
+Try asking:
+"Who built Great Zimbabwe?"
+"Why is it important?"
+"How does RoboGuide protect heritage?"`,
+        "bot"
+    );
+
+});
+
+</script>
+
+
+<script id="roboguide-eye-catching-js">
+document.addEventListener("DOMContentLoaded", () => {
+  const targets = document.querySelectorAll(
+    ".card,.panel,.feature,.lesson-card,.hero-card,.rg-quick,.rg-stat"
+  );
+  targets.forEach((el,i) => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(12px)";
+    el.style.transition = `opacity .55s ease ${Math.min(i*45,450)}ms, transform .55s ease ${Math.min(i*45,450)}ms, box-shadow .2s ease, border-color .2s ease`;
+  });
+  requestAnimationFrame(() => {
+    targets.forEach(el => {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    });
+  });
+});
+</script>
+
+</body>
+</html>

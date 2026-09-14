@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rock Art | Roboguide Academy</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #100c09;
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #4d3824;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #d8a45b;
+        }
+
+        .back {
+            color: #d8a45b;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        .lesson-page {
+            max-width: 900px;
+            margin: auto;
+            padding: 60px 25px;
+        }
+
+        .label {
+            color: #d8a45b;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(40px, 7vw, 70px);
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #d8a45b;
+        }
+
+        .intro {
+            color: #bdb3aa;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .lesson-card {
+            background: #211710;
+            border: 1px solid #4d3824;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .lesson-card h2 {
+            color: #d8a45b;
+            margin-bottom: 15px;
+        }
+
+        .lesson-card p {
+            color: #c2b8af;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .fact {
+            border-left: 4px solid #d8a45b;
+            padding: 15px 20px;
+            background: #18110c;
+            margin-top: 20px;
+            color: #ddd;
+        }
+
+        .art-list {
+            margin-top: 20px;
+            padding-left: 25px;
+        }
+
+        .art-list li {
+            color: #c2b8af;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #18110c;
+            border: 1px solid #4d3824;
+            border-radius: 12px;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .option:hover {
+            border-color: #d8a45b;
+        }
+
+        .option.correct {
+            border-color: #6fcf97;
+        }
+
+        .option.wrong {
+            border-color: #eb5757;
+        }
+
+        .complete-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #d8a45b;
+            color: #100c09;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .complete-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            color: #d8a45b;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        Intelli<span>Rock</span>
+    </div>
+
+    <a href="learn.html" class="back">
+        ← Learning Hub
+    </a>
+
+</nav>
+
+
+<main class="lesson-page">
+
+
+    <div class="label">
+        Roboguide ACADEMY
+    </div>
+
+
+    <h1>
+        Zimbabwe <span>Rock Art</span>
+    </h1>
+
+
+    <p class="intro">
+
+        Explore Zimbabwe's ancient rock art and discover
+        how paintings and engravings provide clues about
+        the lives, beliefs and environments of earlier communities.
+
+    </p>
+
+
+    <!-- WHAT IS ROCK ART -->
+
+    <section class="lesson-card">
+
+        <h2>🎨 What Is Rock Art?</h2>
+
+        <p>
+            Rock art is artwork created on natural rock surfaces.
+            It can include paintings, drawings and engravings.
+        </p>
+
+        <p>
+            Zimbabwe has many important rock art sites containing
+            images created by people in the distant past.
+        </p>
+
+        <div class="fact">
+
+            💡 Rock art gives researchers valuable clues about
+            the lives and environments of earlier communities.
+
+        </div>
+
+    </section>
+
+
+    <!-- WHAT DOES IT SHOW -->
+
+    <section class="lesson-card">
+
+        <h2>🦌 What Can Rock Art Show?</h2>
+
+        <p>
+            Rock art can contain images of animals, people,
+            objects and patterns.
+        </p>
+
+        <ul class="art-list">
+
+            <li>Animals and wildlife</li>
+
+            <li>People and human activities</li>
+
+            <li>Hunting scenes</li>
+
+            <li>Symbols and patterns</li>
+
+            <li>Possible spiritual or cultural activities</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- IMPORTANCE -->
+
+    <section class="lesson-card">
+
+        <h2>🏛️ Why Is Rock Art Important?</h2>
+
+        <p>
+            Rock art is an important part of Zimbabwe's
+            archaeological and cultural heritage.
+        </p>
+
+        <p>
+            Because it was created long ago, it can help us
+            understand aspects of past communities that may not
+            be recorded in written documents.
+        </p>
+
+    </section>
+
+
+    <!-- PROTECTION -->
+
+    <section class="lesson-card">
+
+        <h2>🛡️ Why Must Rock Art Be Protected?</h2>
+
+        <p>
+            Rock art can be fragile. Human contact, vandalism,
+            weathering and other environmental factors can
+            damage these important records of the past.
+        </p>
+
+        <p>
+            Visitors should never scratch, paint, touch or
+            otherwise interfere with rock art.
+        </p>
+
+        <div class="fact">
+
+            🚀 roboguide can help educate visitors about
+            why touching or damaging rock art is harmful.
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+
+    <section class="lesson-card">
+
+        <h2>🧠 Quick Quiz</h2>
+
+        <p>
+            Which action helps protect rock art?
+        </p>
+
+
+        <button
+            class="option"
+            onclick="checkAnswer(this, false)">
+
+            A. Scratching new drawings beside it
+
+        </button>
+
+
+        <button
+            class="option"
+            onclick="checkAnswer(this, true)">
+
+            B. Keeping a safe distance from it
+
+        </button>
+
+
+        <button
+            class="option"
+            onclick="checkAnswer(this, false)">
+
+            C. Touching the paintings
+
+        </button>
+
+
+        <button
+            class="option"
+            onclick="checkAnswer(this, false)">
+
+            D. Painting over faded areas
+
+        </button>
+
+
+        <div id="result"></div>
+
+
+        <button
+            class="complete-btn"
+            onclick="completeLesson()">
+
+            COMPLETE LESSON ✓
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+function checkAnswer(button, correct) {
+
+    const options =
+        document.querySelectorAll(".option");
+
+    options.forEach(function(option) {
+        option.disabled = true;
+    });
+
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        document.getElementById("result").textContent =
+            "✅ Correct! Keeping a safe distance helps protect rock art.";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        document.getElementById("result").textContent =
+            "❌ Not quite. Think about which action prevents damage.";
+
+    }
+
+}
+
+
+function completeLesson() {
+
+    localStorage.setItem(
+        "rockArtCompleted",
+        "true"
+    );
+
+    document.getElementById("result").textContent =
+        "🏆 Rock Art lesson completed! You earned 10 points.";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
